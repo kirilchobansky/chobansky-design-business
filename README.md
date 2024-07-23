@@ -1,2 +1,1 @@
-# chobansky-design-business
-React Project
+1. Initialize React App
