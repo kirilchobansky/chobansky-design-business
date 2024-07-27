@@ -1,0 +1,121 @@
+.first-navbar {
+  background-color: #003471;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  width: 100%;
+  padding: 0 10rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.information li,
+.nav-links li,
+.second-navbar ul li {
+  list-style: none;
+}
+
+.information li a,
+.nav-links li a {
+  color: #fff;
+  font-size: 14px;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.information {
+  display: flex;
+  gap: 2rem;
+}
+
+.information li i {
+  padding-right: 0.3rem;
+}
+
+.information li a:hover,
+.nav-links li a:hover {
+  color: #da7426;
+}
+
+.second-navbar {
+  height: 110px;
+  width: 100%;
+  position: fixed;
+  top: 30px;
+  left: 0;
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+.second-navbar ul {
+  display: flex;
+  padding: 1rem 10rem;
+  gap: 4rem;
+  align-items: center;
+}
+
+.second-navbar ul li:nth-child(1) {
+  padding-right: 8rem;
+}
+
+.second-navbar ul li input {
+  width: 600px;
+  height: 50px;
+  padding: 1rem 2rem;
+  border: 1px solid #e2e2e2;
+}
+
+.search-input {
+  border: 1px solid #ccc;
+  padding: 5px;
+  outline: none;
+}
+
+.search-input:focus {
+  border: 1px solid #da7426;
+}
+
+.second-navbar ul li img {
+  height: 80px;
+}
+
+.search-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  transition: 1s;
+  position: relative;
+  left: -40px;
+  top: 3px;
+  color: #ccc;
+}
+
+.search-btn:hover {
+  cursor: pointer;
+  color: #da7426;
+}
+
+.second-navbar ul li:nth-child(3) a,
+.second-navbar ul li:nth-child(4) a,
+.second-navbar ul li:nth-child(5) a {
+  color: black;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.second-navbar ul li:nth-child(3) a:hover,
+.second-navbar ul li:nth-child(4) a:hover,
+.second-navbar ul li:nth-child(5) a:hover {
+  color: #da7426;
+}
+
+.second-navbar ul li:nth-child(3) a i {
+  padding-right: 0.3rem;
+}

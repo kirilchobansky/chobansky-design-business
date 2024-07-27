@@ -4,3 +4,6 @@
    - create header
      - add html
      - add css
+   - create image slider
+     - add html
+     - add css
