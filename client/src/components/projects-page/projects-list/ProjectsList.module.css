@@ -1,0 +1,68 @@
+.container {
+    margin: 4rem;
+    padding: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 1200px;
+}
+
+.item {
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+}
+
+.item img {
+    height: 200px;
+    width: 350px;
+    object-fit: cover;
+}
+
+.item .name {
+    text-decoration: none;
+    padding: 1rem 2rem 0 2rem;
+    transition: color .5s;
+    color: #000;
+    font-size: 27px;
+}
+
+.item .name:hover {
+    color: #da7426;
+    cursor: pointer;
+}
+
+.item .buttons {
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item .buttons a {
+    text-decoration: none;
+    color: #000;
+}
+
+.item .buttons .more-details {
+    background-color: #d3d3d38a;
+    padding: 0.7rem 2rem;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.item .buttons .more-details:hover {
+  background-color: #da7426;
+  box-shadow: 0 0 10px #da7426;
+}
+
+.item .buttons .add-to-favorite {
+    transition: 0.5s;
+    font-size: 20px;
+}
+
+.item .buttons .add-to-favorite:hover {
+    transform: scale(1.2);
+    color: #da7426;
+}
+

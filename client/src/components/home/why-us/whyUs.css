@@ -1,0 +1,33 @@
+.container-why-us {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 8rem;
+    gap: 6rem;
+}
+
+h1.title {
+    color: #333333;
+    align-items: center;
+    font-size: 50px;
+}
+
+.reasons {
+    display: flex;
+    gap: 8rem;
+}
+
+.item-reason {
+    width: 300px;
+    height: 200px;
+    padding: 1rem;
+    /* border: 3px solid #da7426; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 2rem;
+}
+
+.item-reason:nth-child(2) {
+    translate: 0 30%;
+}
+

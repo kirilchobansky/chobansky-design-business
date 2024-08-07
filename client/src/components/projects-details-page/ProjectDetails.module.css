@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  padding: 3rem;
+}
+
+.image-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-image {
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+.main-image img {
+  width: 600px;
+  height: auto;
+}
+
+.slide-image {
+  height: 100px;
+  width: 100px;
+}
+
+.content {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.imageSlider {
+  display: flex;
+  overflow-x: auto;
+  width: 100%;
+  max-width: 800px;
+}
+
+.slider-images {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+}

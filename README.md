@@ -4,6 +4,12 @@
    - create header
      - add html
      - add css
-   - create image slider
+   - add home image 
      - add html
      - add css
+
+3. Projects List Page
+  - add hardcore html and css
+
+4. Projects Details Page
+  - add hardcore html and css

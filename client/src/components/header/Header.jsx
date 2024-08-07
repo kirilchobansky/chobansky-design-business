@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 
-import styles from "./header.module.css";
+import styles from "./Header.module.css";
 
 export default function Header() {
   return (
@@ -17,7 +17,7 @@ export default function Header() {
             <Link to="/how-to-choose">How to choose project</Link>
           </li>
           <li>
-            <Link to="/products">Products</Link>
+            <Link to="/projects">Projects</Link>
           </li>
           <li>
             <Link to="/contact">Contact</Link>
