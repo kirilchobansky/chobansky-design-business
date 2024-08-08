@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom";
 import FilterSection from "./filter-section/FilterSection";
 import ProjectsList from "./projects-list/ProjectsList";
 import styles from "./ProjectsPage.module.css";
