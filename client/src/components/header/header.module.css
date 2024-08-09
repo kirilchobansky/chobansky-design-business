@@ -9,6 +9,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1;
 }
 
 .nav-links {
@@ -52,6 +53,7 @@
   left: 0;
   box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
   background-color: #fff;
+  z-index: 1;
 }
 
 .second-navbar ul {

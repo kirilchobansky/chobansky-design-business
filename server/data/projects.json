@@ -35,7 +35,14 @@
             ],
             "area": 300,
             "price": 45,
-            "_id": "5bf5bacd-4a20-4780-bcff-0b37de2e5ed7"
+            "_id": "5bf5bacd-4a20-4780-bcff-0b37de2e5ed7",
+            "comments": [
+                {
+                    "username": "KirilChobansky",
+                    "text": "that will work",
+                    "_id": "1ed16fe8-dac0-4b26-90d7-dbf4fadb5584"
+                }
+            ]
         },
         "02fb6a28-8663-4770-9823-e26f4e2be6b4": {
             "name": "Панорамна алея „Стъпалата“",

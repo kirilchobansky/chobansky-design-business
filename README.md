@@ -15,10 +15,14 @@
 4. Projects Details Page
   - add hardcore html and css
   - load project from server
+    - add projects api
+  - add comments section
+    - add html and css
+    - add comments api 
 
 5. Create Server Side
   - add projects in server collection
   - create api folder
     - create requester file
-    - create projects api
+    
 
