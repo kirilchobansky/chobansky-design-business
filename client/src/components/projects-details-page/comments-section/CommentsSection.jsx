@@ -12,13 +12,13 @@ const CommentsSection = ({ projectId }) => {
       const commentsResult = await commentsApi.getAll(projectId);
       setComments(commentsResult);
 
-      if (projectId) {
-        console.log(projectId);
-      }
+      // if (projectId) {
+      //   console.log(projectId);
+      // }
 
-      if (comments) {
-        console.log(comments);
-      }
+      // if (comments) {
+      //   console.log(comments);
+      // }
     })();
   }, []);
 

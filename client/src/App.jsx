@@ -5,6 +5,8 @@ import Home from "./components/home/Home";
 import Header from "./components/header/Header";
 import ProjectsPage from "./components/projects-page/ProjectsPage";
 import ProjectDetails from "./components/projects-details-page/ProjectDetails";
+import Login from "./components/auth/login/Login";
+import Register from "./components/auth/register/Register";
 
 const App = () => {
   return (
@@ -14,7 +16,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects/" element={<ProjectsPage />} />
-          <Route path="/projects/details/:id" element={<ProjectDetails />} />
+          <Route path="/projects/details/:id" element={<ProjectDetails />} />     
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
     </>

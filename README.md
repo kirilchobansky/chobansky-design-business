@@ -28,3 +28,12 @@
 - add projects in server collection
 - create api folder
   - create requester file
+
+6. Authentication 
+  - login
+    - create login component 
+    - add login api
+    - create custom hooks 
+      - useForm
+      - useAuth
+  
