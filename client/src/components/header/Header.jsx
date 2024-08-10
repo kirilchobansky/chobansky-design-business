@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 
 import styles from "./Header.module.css";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function Header() {
+  const { isAuthenticated, email } = useContext(AuthContext);
+
   return (
     <header>
       <nav className={styles["first-navbar"]}>
@@ -57,9 +61,16 @@ export default function Header() {
             </button>
           </li>
           <li>
-            <Link to="/login">
-              <i className="fa-regular fa-user"></i>Login
-            </Link>
+            {isAuthenticated ? (
+              <Link to="/profile">
+                <i className="fa-regular fa-user"></i>
+                {email}
+              </Link>
+            ) : (
+              <Link to="/login">
+                <i className="fa-regular fa-user"></i>Login
+              </Link>
+            )}
           </li>
           <li>
             <Link to="/wishlist">
