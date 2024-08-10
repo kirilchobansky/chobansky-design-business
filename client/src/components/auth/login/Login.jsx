@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./Login.module.css";
@@ -8,6 +8,7 @@ import { useLogin } from "../../../hooks/useAuth";
 const initialValues = { email: "", password: "" };
 
 export default function Login() {
+  const [error, setError] = useState("");
   const login = useLogin();
   const navigate = useNavigate();
 
@@ -16,6 +17,7 @@ export default function Login() {
       await login(email, password);
       navigate("/");
     } catch (error) {
+      setError(error.message)
       console.error(error.message);
     }
   };
@@ -29,12 +31,11 @@ export default function Login() {
     <div className={styles.container}>
       <form className={styles.form} onSubmit={submitHandler}>
         <h2>Login</h2>
-        {/* {error && <p className={styles.error}>{error}</p>} */}
+        {error && <p className={styles.error}>{error}</p>}
         <div className={styles.formGroup}>
           <label htmlFor="email">Email</label>
           <input
             type="email"
-            id="email"
             name="email"
             value={values.email}
             onChange={changeHandler}
@@ -46,7 +47,6 @@ export default function Login() {
           <label htmlFor="password">Password</label>
           <input
             type="password"
-            id="password"
             name="password"
             value={values.password}
             onChange={changeHandler}

@@ -1,49 +1,48 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./Register.module.css";
+import { useRegister } from "../../../hooks/useAuth";
+import { useForm } from "../../../hooks/useForm";
 
-const Register = ({ onRegister }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+const initialValues = { email: "", password: "", rePass: "" };
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    setError("");
+export default function Register() {
+  const [error, setError] = useState('');
+  const register = useRegister();
+  const navigate = useNavigate();
+
+  const registerHandler = async ({ email, password, rePass }) => {
+    if(password !== rePass){
+      return setError('Password missmatch!');
+    }
 
     try {
-      const response = await fetch("/api/Register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Register failed");
-      }
-
-      const data = await response.json();
-      onRegister(data); // Pass user data to parent component
-    } catch (err) {
-      setError("Invalid email or password");
+      await register(email, password);
+      navigate("/");
+    } catch (error) {
+      setError(error.message);
+      console.error(error.message);
     }
   };
 
+  const { values, changeHandler, submitHandler } = useForm(
+    initialValues,
+    registerHandler
+  );
+
   return (
     <div className={styles.container}>
-      <form className={styles.form} onSubmit={handleRegister}>
+      <form className={styles.form} onSubmit={submitHandler}>
         <h2>Register</h2>
         {error && <p className={styles.error}>{error}</p>}
         <div className={styles.formGroup}>
           <label htmlFor="email">Email</label>
           <input
             type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={values.email}
+            onChange={changeHandler}
             required
             className={styles.input}
           />
@@ -52,9 +51,20 @@ const Register = ({ onRegister }) => {
           <label htmlFor="password">Password</label>
           <input
             type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            value={values.password}
+            onChange={changeHandler}
+            required
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="email">Confirm password</label>
+          <input
+            type="password"
+            name="rePass"
+            value={values.rePass}
+            onChange={changeHandler}
             required
             className={styles.input}
           />
@@ -71,6 +81,4 @@ const Register = ({ onRegister }) => {
       </form>
     </div>
   );
-};
-
-export default Register;
+}

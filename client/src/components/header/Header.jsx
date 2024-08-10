@@ -43,7 +43,7 @@ export default function Header() {
         <ul>
           <li>
             <Link to="/">
-              <img src="/src/assets/images/chobansky-logo.jpg" alt="logo" />
+              <img src="/public/images/chobansky-logo.jpg" alt="logo" />
             </Link>
           </li>
           <li>

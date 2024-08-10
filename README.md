@@ -29,11 +29,20 @@
 - create api folder
   - create requester file
 
-6. Authentication 
-  - login
-    - create login component 
-    - add login api
-    - create custom hooks 
-      - useForm
-      - useAuth
-  
+6. Authentication
+
+- create custom hooks
+
+  - add useForm
+  - add useAuth
+
+- login
+
+  - create login component
+  - add login api
+  - handle validation and errors
+
+- register
+  - create register component
+  - add register api
+  - handle validation and errors
