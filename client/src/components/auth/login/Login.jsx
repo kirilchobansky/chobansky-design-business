@@ -5,20 +5,24 @@ import styles from "./Login.module.css";
 import { useForm } from "../../../hooks/useForm";
 import { useLogin } from "../../../hooks/useAuth";
 
+const initialValues = { email: "", password: "" };
+
 export default function Login() {
   const login = useLogin();
   const navigate = useNavigate();
 
-  const { changeHandler, submitHandler, values } = useForm(
-    { email: "", password: "" },
-    async ({ email, password }) => {
-      try {
-        await login(email, password);
-        navigate("/");
-      } catch (error) {
-        console.error(error.message);
-      }
+  const loginHandler = async ({ email, password }) => {
+    try {
+      await login(email, password);
+      navigate("/");
+    } catch (error) {
+      console.error(error.message);
     }
+  };
+
+  const { values, changeHandler, submitHandler } = useForm(
+    initialValues,
+    loginHandler
   );
 
   return (
