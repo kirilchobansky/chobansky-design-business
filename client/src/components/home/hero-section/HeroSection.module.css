@@ -1,7 +1,88 @@
 .container {
-    background-image: url('public/images/home-image.jpg');
-    height: 83.5vh;
-    background-repeat: no-repeat;
-    background-size: cover; 
-    background-position: center;
+  background-image: url("https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG9mZmljZSUyMGFyY2hpdGVjdHVyZXxlbnwwfHwwfHx8MA%3D%3D");
+  height: 86vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 15rem;
 }
+
+h1 {
+  text-transform: uppercase;
+  font-size: 50px;
+  font-family: Copperplate Gothic;
+  margin-bottom: 2rem;
+}
+
+.catalog-btn {
+  text-decoration: none;
+  color: #fff;
+  background-color: #a5a5a58a;
+  padding: 1rem 2rem;
+  transition: 0.3s;
+}
+
+.catalog-btn:hover {
+  background-color: #da7426;
+  box-shadow: 0 0 10px #da7426;
+}
+
+.catalog-btn:active {
+    background-color: #a64c14;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.impressive-button {
+  text-decoration: none;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.impressive-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.75s ease;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.impressive-button:hover {
+  background: linear-gradient(135deg, #a777e3, #6e8efb);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+}
+
+.impressive-button:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.impressive-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.impressive-button:active::before {
+  transform: translate(-50%, -50%) scale(0);
+}
+
