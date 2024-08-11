@@ -1,0 +1,178 @@
+.profileContainer {
+    background: #fff;
+    width: 80%;
+    max-width: 900px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.profileHeader {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #6e8efb;
+    color: white;
+    position: relative;
+}
+
+.profilePicture {
+    position: relative;
+    margin-right: 20px;
+}
+
+.profilePicture img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 5px solid white;
+}
+
+.editPictureBtn {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 5px 10px;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.editPictureBtn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.userInfo {
+    flex: 1;
+}
+
+.userName {
+    font-size: 24px;
+    margin: 0;
+}
+
+.userEmail {
+    margin-top: 5px;
+    font-size: 18px;
+}
+
+.profileContent {
+    padding: 20px;
+}
+
+.profileForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.formGroup label {
+    width: 150px;
+    font-weight: bold;
+}
+
+.formGroup input,
+.formGroup textarea {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+    background-color: #e0e0e0;
+}
+
+.editBtn {
+    margin-left: 10px;
+    padding: 5px 15px;
+    font-size: 14px;
+    border: none;
+    background-color: #6e8efb;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.editBtn:hover {
+    background-color: #5b7cdb;
+}
+
+.saveBtn,
+.logoutBtn {
+    align-self: flex-start;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #6e8efb;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.saveBtn:hover,
+.logoutBtn:hover {
+    background-color: #5b7cdb;
+}
+
+.deleteBtn {
+    align-self: flex-start;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #ff0000;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.deleteBtn:hover {
+    background-color: #a51313;
+}
+
+.bottom-btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.socialLinks {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.socialLinks h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.socialLink {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 24px;
+    color: #6e8efb;
+    transition: color 0.3s;
+}
+
+.socialLink:hover {
+    color: #5b7cdb;
+}

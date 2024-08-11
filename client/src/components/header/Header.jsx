@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 
 import styles from "./Header.module.css";
-import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 export default function Header() {
-  const { isAuthenticated, username } = useContext(AuthContext);
+  const { isAuthenticated, username } = useAuthContext();
 
   return (
     <header>
@@ -66,7 +65,6 @@ export default function Header() {
                 <i className="fa-regular fa-user"></i>
                 {username}
               </Link>
-              <Link to="/logout">Logout</Link>
             </li>
           ) : (
             <li>

@@ -9,6 +9,7 @@ import Login from "./components/auth/login/Login";
 import Register from "./components/auth/register/Register";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import Logout from "./components/auth/logout/Logout";
+import ProfileSection from "./components/profile-page/ProfileSection";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/profile" element={<ProfileSection />} />
         </Routes>
       </div>
     </AuthContextProvider>

@@ -57,3 +57,7 @@
 
 - extract auth state from app component
 - persist auth state
+
+8. Profile page 
+  - add html and css
+  - load dynamic information
