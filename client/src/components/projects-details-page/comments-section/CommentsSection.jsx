@@ -1,33 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./CommentsSection.module.css";
 import commentsApi from "../../../api/comments-api";
+import { AuthContext } from "../../../contexts/AuthContext";
 
-const CommentsSection = ({ projectId }) => {
-  const [username, setUsername] = useState("");
+export default function CommentsSection({ projectId, comments }) {
   const [commentText, setCommentText] = useState("");
-  const [comments, setComments] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const commentsResult = await commentsApi.getAll(projectId);
-      setComments(commentsResult);
-
-      // if (projectId) {
-      //   console.log(projectId);
-      // }
-
-      // if (comments) {
-      //   console.log(comments);
-      // }
-    })();
-  }, []);
+  const { isAuthenticated, username } = useContext(AuthContext);
+  const [allComments, setAllComments] = useState(() => {
+    if (comments && comments.length > 0) {
+      return comments;
+    } else {
+      return [];
+    }
+  });
 
   const handleAddComment = async (e) => {
     e.preventDefault();
 
-    await commentsApi.create(projectId, username, commentText);
+    const newComment = await commentsApi.create(
+      projectId,
+      username,
+      commentText
+    );
 
-    setUsername("");
+    setAllComments((prevComments) => [...prevComments, newComment]);
+
     setCommentText("");
   };
 
@@ -35,14 +32,6 @@ const CommentsSection = ({ projectId }) => {
     <div className={styles.commentsSection}>
       <h3>Comments</h3>
       <form onSubmit={handleAddComment}>
-        <input
-          className={styles.commentInput}
-          type="text"
-          name="username"
-          placeholder="Username..."
-          onChange={(e) => setUsername(e.target.value)}
-          value={username}
-        />
         <input
           className={styles.commentInput}
           type="text"
@@ -59,8 +48,8 @@ const CommentsSection = ({ projectId }) => {
       </form>
 
       <div className={styles.commentsList}>
-        {comments.length > 0 ? (
-          comments.map((comment, index) => (
+        {allComments && allComments.length > 0 ? (
+          allComments.map((comment, index) => (
             <div key={index} className={styles.comment}>
               <h4>{comment.username}</h4>
               <p>{comment.text}</p>
@@ -72,6 +61,4 @@ const CommentsSection = ({ projectId }) => {
       </div>
     </div>
   );
-};
-
-export default CommentsSection;
+}

@@ -72,21 +72,20 @@
 }
 
 .orderButton {
-  background-color: #da7426;
+  background-color: #9292928a;
   color: #fff;
   padding: 1rem 2.5rem;
   font-size: 20px;
   font-weight: bold;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: 0.3s;
   margin-top: 5rem;
 }
 
 .orderButton:hover {
-  background-color: #bf5e1a;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: #da7426;
+  box-shadow: 0 0 10px #da7426;
 }
 
 .orderButton:active {

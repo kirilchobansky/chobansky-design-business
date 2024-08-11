@@ -20,7 +20,7 @@ export default function ProjectDetails() {
         console.error("Failed to fetch project:", error);
       }
     })();
-  }, []);
+  }, [id]);
 
   return (
     <div className={styles["container"]}>
@@ -33,7 +33,7 @@ export default function ProjectDetails() {
       </div>
 
       <div className={styles["comments-section"]}>
-        <CommentsSection projectId={project._id} />
+        <CommentsSection {...project} />
       </div>
     </div>
   );

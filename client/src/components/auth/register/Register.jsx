@@ -12,13 +12,13 @@ export default function Register() {
   const register = useRegister();
   const navigate = useNavigate();
 
-  const registerHandler = async ({ email, password, rePass }) => {
+  const registerHandler = async ({ email, username, password, rePass }) => {
     if(password !== rePass){
       return setError('Password missmatch!');
     }
 
     try {
-      await register(email, password);
+      await register(email, username, password);
       navigate("/");
     } catch (error) {
       setError(error.message);
@@ -48,6 +48,17 @@ export default function Register() {
           />
         </div>
         <div className={styles.formGroup}>
+          <label htmlFor="text">Username</label>
+          <input
+            type="text"
+            name="username"
+            value={values.username}
+            onChange={changeHandler}
+            required
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.formGroup}>
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -59,7 +70,7 @@ export default function Register() {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="email">Confirm password</label>
+          <label htmlFor="password">Confirm password</label>
           <input
             type="password"
             name="rePass"
