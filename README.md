@@ -46,3 +46,7 @@
   - create register component
   - add register api
   - handle validation and errors
+
+7. Refacturing 
+  - extract auth state from app component
+  - persist auth state

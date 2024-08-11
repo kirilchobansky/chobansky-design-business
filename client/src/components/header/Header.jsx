@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
 export default function Header() {
-  const { isAuthenticated, email } = useContext(AuthContext);
+  const { isAuthenticated, username } = useContext(AuthContext);
 
   return (
     <header>
@@ -64,7 +64,7 @@ export default function Header() {
             {isAuthenticated ? (
               <Link to="/profile">
                 <i className="fa-regular fa-user"></i>
-                {email}
+                {username}
               </Link>
             ) : (
               <Link to="/login">
