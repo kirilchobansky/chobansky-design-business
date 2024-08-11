@@ -60,18 +60,21 @@ export default function Header() {
               <i className="fa-solid fa-magnifying-glass"></i>
             </button>
           </li>
-          <li>
-            {isAuthenticated ? (
+          {isAuthenticated ? (
+            <li className={styles["user-menu"]}>
               <Link to="/profile">
                 <i className="fa-regular fa-user"></i>
                 {username}
               </Link>
-            ) : (
+              <Link to="/logout">Logout</Link>
+            </li>
+          ) : (
+            <li>
               <Link to="/login">
                 <i className="fa-regular fa-user"></i>Login
               </Link>
-            )}
-          </li>
+            </li>
+          )}
           <li>
             <Link to="/wishlist">
               <i className="fa-regular fa-heart"></i>

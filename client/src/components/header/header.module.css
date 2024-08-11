@@ -121,3 +121,14 @@
 .second-navbar ul li:nth-child(3) a i {
   padding-right: 0.3rem;
 }
+
+.second-navbar ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.second-navbar ul li {
+  position: relative;
+  margin-right: 20px;
+}

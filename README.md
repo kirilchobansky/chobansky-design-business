@@ -43,10 +43,17 @@
   - handle validation and errors
 
 - register
+
   - create register component
   - add register api
   - handle validation and errors
 
-7. Refacturing 
-  - extract auth state from app component
-  - persist auth state
+- logout
+  - create logout component
+  - add logout api
+  - add authorization in requester
+
+7. Refacturing
+
+- extract auth state from app component
+- persist auth state
