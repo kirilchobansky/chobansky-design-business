@@ -1,27 +1,15 @@
 import { Link } from "react-router-dom";
 import styles from "./ProjectsList.module.css";
-import { useEffect, useState } from "react";
-import projectsApi from "../../../api/projects-api";
+import { useGetAllProjects } from "../../../hooks/useGames";
 
 export default function ProjectsList() {
-  const [projects, setProjects] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const projectsResult = await projectsApi.getAll();
-        setProjects(projectsResult);
-      } catch (error) {
-        console.error("Failed to fetch projects:", error);
-      }
-    })();
-  }, []);
-
+  const [projects] = useGetAllProjects();
+  
   return (
     <div className={styles["container"]}>
-      {projects.map((project) => (
+      {projects && projects.map((project) => (
         <div key={project._id} className={styles["item"]}>
-          <img src={project.imageUrl} alt="" />
+          <img src={project.images[0]} alt="" />
           <Link to={`details/${project._id}`} className={styles["name"]}>
             {project.name}
           </Link>

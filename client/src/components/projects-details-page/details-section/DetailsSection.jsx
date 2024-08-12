@@ -5,7 +5,6 @@ export default function DetailsSection({project}) {
       <div className={styles.detailsContainer}>
         <div className={styles.header}>
           <h1>{project.name}</h1>
-          <p>{project.description}</p>
         </div>
         <div className={styles.detailsContent}>
           <div className={styles.detailItem}>
@@ -19,7 +18,7 @@ export default function DetailsSection({project}) {
         </div>
         <div className={styles.additionalInfo}>
           <h2>Project Description</h2>
-          <p>{project.longDescription}</p>
+          <p>{project.description}</p>
         </div>
         <button className={styles.orderButton}>Place Order</button>
       </div>

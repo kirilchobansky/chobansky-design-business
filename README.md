@@ -57,6 +57,11 @@
 
 - extract auth state from app component
 - persist auth state
+- migrate from softuni practice server to mongoDB own server
+  - create src in server folder
+  - add server.ts
+  - add routes
+  - add controllers, models and services
 
 8. Profile page 
   - add html and css

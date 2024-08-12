@@ -1,26 +1,15 @@
 import { useParams } from "react-router-dom";
 
+import { useGetOneProject } from "../../hooks/useGames";
+
 import styles from "./ProjectDetails.module.css";
-import { useEffect, useState } from "react";
-import projectsApi from "../../api/projects-api";
 import ImageSlider from "./image-slider/ImageSlider";
 import CommentsSection from "./comments-section/CommentsSection";
 import DetailsSection from "./details-section/DetailsSection";
 
 export default function ProjectDetails() {
-  const { id } = useParams();
-  const [project, setProject] = useState({});
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const projectResult = await projectsApi.getOneById(id);
-        setProject(projectResult);
-      } catch (error) {
-        console.error("Failed to fetch project:", error);
-      }
-    })();
-  }, [id]);
+  const { projectId } = useParams();
+  const [project] = useGetOneProject(projectId);
 
   return (
     <div className={styles["container"]}>
