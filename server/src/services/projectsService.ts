@@ -40,7 +40,7 @@ const getAll = () => Project.find();
 // const getAllProjectsByTag = (tag: string) => Project.find({ tags: tag });
 
 const getProjectById = (ProjectId: string) =>
-  Project.findById(ProjectId)
+  Project.findById(ProjectId).populate("comments");
 
 export default {
   getAll,

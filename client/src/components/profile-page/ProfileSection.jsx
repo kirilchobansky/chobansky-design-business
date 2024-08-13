@@ -6,7 +6,6 @@ import { useAuthContext } from "../../contexts/AuthContext";
 export default function ProfileSection() {
   const { username, email } = useAuthContext();
 
-  
   const [isEditing, setIsEditing] = useState({
     username: false,
     email: false,

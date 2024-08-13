@@ -24,19 +24,24 @@ const requester = async (method, url, data) => {
         options.body = JSON.stringify(data);
     }
 
-    const response = await fetch(url, options);
-    
-    if(response.status === 204){
-        return;
+    try {
+        const response = await fetch(url, options);
+
+        if (response.status === 204) {
+            return;
+        }
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw result;
+        }
+
+        return result;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; 
     }
-
-    const result = await response.json();
-
-    if(!response.ok){
-        throw result;
-    }
-
-    return result;
 }
 
 const get = requester.bind(null, 'GET');

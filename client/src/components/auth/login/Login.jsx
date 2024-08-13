@@ -17,7 +17,7 @@ export default function Login() {
       await login(email, password);
       navigate("/");
     } catch (error) {
-      setError(error.message)
+      setError('Incorrect email or password!')
       console.error(error.message);
     }
   };

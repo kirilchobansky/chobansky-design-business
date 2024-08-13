@@ -1,13 +1,12 @@
 import { Schema, model, Types } from "mongoose";
 
-interface Comment {
-  id: string;
+export interface IComment {
   comment: string;
   owner: Types.ObjectId;
   project: Types.ObjectId;
 }
 
-const CommentSchema = new Schema<Comment>(
+const CommentSchema = new Schema<IComment>(
   {
     comment: { type: String, required: true },
     owner: { type: Schema.Types.ObjectId, ref: "User" },
@@ -20,4 +19,4 @@ const CommentSchema = new Schema<Comment>(
   }
 );
 
-export const Comment = model<Comment>("Comment", CommentSchema);
+export const Comment = model<IComment>("Comment", CommentSchema);

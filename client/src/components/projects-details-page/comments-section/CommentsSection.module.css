@@ -1,5 +1,3 @@
-/* Comments.module.css */
-
 .commentsSection {
   margin-top: 3rem;
   padding: 2rem;
@@ -62,8 +60,33 @@
   border-radius: 8px;
   margin-bottom: 1rem;
   font-size: 16px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .comment h4 {
   padding-bottom: .5rem;
+}
+
+.commentActions {
+  margin-top: 10px;
+}
+
+.editButton,
+.deleteButton,
+.saveButton {
+  background-color: #f4f4f4;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.editButton:hover {
+  background-color: #ddd;
+}
+
+.deleteButton:hover {
+  background-color: #ffcccc;
 }

@@ -1,6 +1,6 @@
 import { Schema, model, Types } from "mongoose";
 
-export interface Project {
+export interface IProject {
   id: string;
   name: string;
   price: number;
@@ -10,7 +10,7 @@ export interface Project {
   comments: Types.ObjectId[];
 }
 
-export const ProjectSchema = new Schema<Project>(
+export const ProjectSchema = new Schema<IProject>(
   {
     name: { type: String, required: true },
     price: { type: Number, required: true },
@@ -26,4 +26,4 @@ export const ProjectSchema = new Schema<Project>(
   }
 );
 
-export const Project = model<Project>("Project", ProjectSchema);
+export const Project = model<IProject>("Project", ProjectSchema);

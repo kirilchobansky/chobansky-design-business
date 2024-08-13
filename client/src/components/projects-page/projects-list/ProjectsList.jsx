@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./ProjectsList.module.css";
-import { useGetAllProjects } from "../../../hooks/useGames";
+import { useGetAllProjects } from "../../../hooks/useProjects";
 
 export default function ProjectsList() {
   const [projects] = useGetAllProjects();

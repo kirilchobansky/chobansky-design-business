@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import { useGetOneProject } from "../../hooks/useGames";
+import { useGetOneProject } from "../../hooks/useProjects";
 
 import styles from "./ProjectDetails.module.css";
 import ImageSlider from "./image-slider/ImageSlider";
@@ -22,7 +22,7 @@ export default function ProjectDetails() {
       </div>
 
       <div className={styles["comments-section"]}>
-        <CommentsSection {...project} />
+        <CommentsSection comments={project.comments} />
       </div>
     </div>
   );

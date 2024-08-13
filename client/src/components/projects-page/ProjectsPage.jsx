@@ -1,4 +1,3 @@
-import { useGetAllProjects } from "../../hooks/useGames";
 import FilterSection from "./filter-section/FilterSection";
 import ProjectsList from "./projects-list/ProjectsList";
 import styles from "./ProjectsPage.module.css";
