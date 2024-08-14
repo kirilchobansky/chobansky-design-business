@@ -10,6 +10,9 @@ import Register from "./components/auth/register/Register";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import Logout from "./components/auth/logout/Logout";
 import ProfileSection from "./components/profile-page/ProfileSection";
+import IsAuth from "./guards/isAuth";
+import IsGuest from "./guards/isGuest";
+import ContactUs from "./components/contact-us/ContactUs";
 
 const App = () => {
   return (
@@ -19,11 +22,19 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects/" element={<ProjectsPage />} />
-          <Route path="/projects/details/:projectId" element={<ProjectDetails />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/profile" element={<ProfileSection />} />
+          <Route
+            path="/projects/details/:projectId"
+            element={<ProjectDetails />}
+          />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route element={<IsGuest />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
+          <Route element={<IsAuth />}>
+            <Route path="/profile" element={<ProfileSection />} />
+            <Route path="/logout" element={<Logout />} />
+          </Route>
         </Routes>
       </div>
     </AuthContextProvider>

@@ -53,6 +53,8 @@
   - add logout api
   - add authorization in requester
 
+- add route guards
+
 7. Refacturing
 
 - extract auth state from app component
@@ -67,4 +69,6 @@
   - add html and css
   - load dynamic information
   - add update and delete functionalities
+
+
 
