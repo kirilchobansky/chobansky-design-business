@@ -12,13 +12,15 @@ export const AuthContextProvider = (props) => {
 
   const logout = () => {
     setAuthState(null);
-    localStorage.removeItem('auth');
+    localStorage.removeItem("auth");
   };
 
   const contextData = {
     userId: authState?.id,
     email: authState?.email,
     username: authState?.username,
+    address: authState?.address,
+    phone: authState?.phone,
     accessToken: authState?.token,
     isAuthenticated: !!authState?.email,
     changeAuthState,
@@ -34,4 +36,4 @@ export const AuthContextProvider = (props) => {
 
 export const useAuthContext = () => {
   return useContext(AuthContext);
-}
+};

@@ -66,3 +66,5 @@
 8. Profile page 
   - add html and css
   - load dynamic information
+  - add update and delete functionalities
+

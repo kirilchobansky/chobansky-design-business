@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { Types } from "mongoose";
 import { User, IUser } from "../models/User";
 
 const SECRET = "ThatIsMyBestSecret";
@@ -44,28 +45,32 @@ function generateToken(user: IUser) {
     id: user._id,
     email: user.email,
     username: user.username,
-    address: user.address,
+    address: user?.address,
+    phone: user?.phone,
     isAdmin: user.isAdmin,
     token: token,
   };
 }
 
-const likeFood = (foodId: string, userId: string) =>
+const likeFood = (foodId: string, userId: Types.ObjectId) =>
   User.findByIdAndUpdate(userId, { $push: { favoriteFoods: foodId } });
 
-const dislikeFood = (foodId: string, userId: string) =>
+const dislikeFood = (foodId: string, userId: Types.ObjectId) =>
   User.findByIdAndUpdate(userId, { $pull: { favoriteFoods: foodId } });
 
-const getUserById = (userId: string) => User.findById(userId);
+const getUserById = (userId: Types.ObjectId) => User.findById(userId);
 
 const updateUserDetails = (
-  userId: string,
-  name: string,
+  userId: Types.ObjectId,
+  username: string,
   email: string,
-  address: string
-) => User.findByIdAndUpdate(userId, { name, email, address }, { new: true });
+  address: string,
+  phone: number
+) => User.findByIdAndUpdate(userId, { username, email, address, phone }, { new: true });
 
-const getUserByIdWithFoods = (userId: string) =>
+const deleteUserById = (userId: Types.ObjectId) => User.findByIdAndDelete(userId);
+
+const getUserByIdWithFoods = (userId: Types.ObjectId) =>
   User.findById(userId).populate("favoriteFoods");
 
 export default {
@@ -77,4 +82,5 @@ export default {
   getUserById,
   updateUserDetails,
   getUserByIdWithFoods,
+  deleteUserById
 };

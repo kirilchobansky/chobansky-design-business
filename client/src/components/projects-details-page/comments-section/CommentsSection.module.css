@@ -54,6 +54,7 @@
 }
 
 .comment {
+  height: auto;
   padding: 1rem;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -62,6 +63,15 @@
   font-size: 16px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.commentContent {
+  width: 80%;
+}
+
+.commentContent input {
+  width: 80%;
 }
 
 .comment h4 {

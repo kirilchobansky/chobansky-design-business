@@ -50,7 +50,7 @@ export default function CommentsSection() {
 
   const handleDelete = async (commentId) => {
     try {
-      await commentsApi.remove(commentId);
+      await commentsApi.remove(commentId, userId, projectId);
       setComments((prevComments) =>
         prevComments.filter((c) => c._id !== commentId)
       );

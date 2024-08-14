@@ -1,16 +1,34 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./ProfileSection.module.css";
-import { Link } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { useDeleteUser, useUpdateUser } from "../../hooks/useUser";
 
 export default function ProfileSection() {
-  const { username, email } = useAuthContext();
+  const updateUser = useUpdateUser();
+  const deleteUser = useDeleteUser();
+  const navigate = useNavigate();
+
+  const {
+    userId,
+    username: initialUsername,
+    email: initialEmail,
+    address: initialAddress,
+    phone: initialPhone,
+  } = useAuthContext();
 
   const [isEditing, setIsEditing] = useState({
     username: false,
     email: false,
     phone: false,
-    bio: false,
+    address: false,
+  });
+
+  const [formData, setFormData] = useState({
+    username: initialUsername,
+    email: initialEmail,
+    phone: initialPhone || "",
+    address: initialAddress || "",
   });
 
   const toggleEdit = (field) => {
@@ -18,6 +36,39 @@ export default function ProfileSection() {
       ...prevState,
       [field]: !prevState[field],
     }));
+  };
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const handleSaveChanges = async (e) => {
+    e.preventDefault();
+
+    try {
+      await updateUser(userId, formData);
+    } catch (error) {
+      console.error(error);
+    }
+    setIsEditing({
+      username: false,
+      email: false,
+      phone: false,
+      address: false,
+    });
+  };
+
+  const handleDeleteUser = async () => {
+     try {
+      await deleteUser(userId);
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -28,19 +79,20 @@ export default function ProfileSection() {
           <button className={styles.editPictureBtn}>Change Picture</button>
         </div>
         <div className={styles.userInfo}>
-          <h1 className={styles.userName}>{username}</h1>
-          <p className={styles.userEmail}>{email}</p>
+          <h1 className={styles.userName}>{formData.username}</h1>
+          <p className={styles.userEmail}>{formData.email}</p>
         </div>
       </div>
       <div className={styles.profileContent}>
-        <form className={styles.profileForm}>
+        <form className={styles.profileForm} onSubmit={handleSaveChanges}>
           <div className={styles.formGroup}>
             <label htmlFor="username">Username</label>
             <input
               type="text"
               id="username"
-              value={username}
+              value={formData.username}
               readOnly={!isEditing.username}
+              onChange={handleChange}
             />
             <button
               className={styles.editBtn}
@@ -55,8 +107,9 @@ export default function ProfileSection() {
             <input
               type="email"
               id="email"
-              value={email}
+              value={formData.email}
               readOnly={!isEditing.email}
+              onChange={handleChange}
             />
             <button
               className={styles.editBtn}
@@ -71,8 +124,10 @@ export default function ProfileSection() {
             <input
               type="tel"
               id="phone"
-              value="+1 234 567 890"
+              value={formData.phone}
+              placeholder="Add phone number..."
               readOnly={!isEditing.phone}
+              onChange={handleChange}
             />
             <button
               className={styles.editBtn}
@@ -83,19 +138,21 @@ export default function ProfileSection() {
             </button>
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="bio">Bio</label>
-            <textarea
-              id="bio"
-              rows="4"
-              value="Hi, I'm John Doe, a web developer from New York!"
-              readOnly={!isEditing.bio}
-            ></textarea>
+            <label htmlFor="address">Address</label>
+            <input
+              type="text"
+              id="address"
+              value={formData.address}
+              placeholder="Add address..."
+              readOnly={!isEditing.address}
+              onChange={handleChange}
+            />
             <button
               className={styles.editBtn}
               type="button"
-              onClick={() => toggleEdit("bio")}
+              onClick={() => toggleEdit("address")}
             >
-              {isEditing.bio ? "Save" : "Edit"}
+              {isEditing.address ? "Save" : "Edit"}
             </button>
           </div>
           <div className={styles.formGroup}>
@@ -116,9 +173,9 @@ export default function ProfileSection() {
           <Link to="/logout" className={styles.logoutBtn}>
             Logout
           </Link>
-          <Link to="/delete-account" className={styles.deleteBtn}>
+          <button className={styles.deleteBtn} onClick={handleDeleteUser}>
             Delete Account
-          </Link>
+          </button>
         </div>
         <div className={styles.socialLinks}>
           <h3>Connect with me:</h3>
