@@ -2,13 +2,17 @@ import { Link } from "react-router-dom";
 
 import { dislikeProject, likeProject } from "../../../api/user-api";
 import { useAuthContext } from "../../../contexts/AuthContext";
+import { useGetLikedProjects } from "../../../hooks/useUser";
 
 import styles from "./ProjectsList.module.css";
-import { useGetLikedProjects } from "../../../hooks/useUser";
+import ClassicOrange from "../../shared/buttons/classic-orange/ClassicOrange";
 
 export default function ProjectsList({ projects }) {
   const { userId } = useAuthContext();
-  const [likedProjects, setLikedProjects] = useGetLikedProjects(userId);
+  const [likedProjects, setLikedProjects] = useGetLikedProjects(
+    userId,
+    "object"
+  );
 
   const handleLikeToggle = async (projectId) => {
     if (likedProjects[projectId]) {
@@ -34,12 +38,10 @@ export default function ProjectsList({ projects }) {
               {project.name}
             </Link>
             <div className={styles.buttons}>
-              <Link
-                to={`/projects/details/${project.id}`}
-                className={styles["more-details"]}
-              >
-                More Details
-              </Link>
+              <ClassicOrange
+                url={`/projects/details/${project._id}`}
+                text="More details"
+              />
               <button
                 className={styles["add-to-favorite"]}
                 onClick={() => handleLikeToggle(project.id)}

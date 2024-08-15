@@ -13,6 +13,7 @@ import ProfileSection from "./components/profile-page/ProfileSection";
 import IsAuth from "./guards/isAuth";
 import IsGuest from "./guards/isGuest";
 import ContactUs from "./components/contact-us/ContactUs";
+import Wishlist from "./components/wishlist/Wishlist";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
             element={<ProjectDetails />}
           />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/wishlist" element={<Wishlist />} />
           <Route element={<IsGuest />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

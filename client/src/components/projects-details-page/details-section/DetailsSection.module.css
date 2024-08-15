@@ -5,6 +5,9 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 550px;
+  display: flex;
+  flex-direction: column;
+  
 }
 
 .header {
@@ -18,16 +21,9 @@
   color: #333;
 }
 
-.header p {
-  font-size: 18px;
-  color: #666;
-}
-
 .detailsContent {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2rem;
-
 }
 
 .detailItem {
@@ -35,8 +31,8 @@
   border-radius: 8px;
   padding: 1.5rem;
   text-align: center;
-  width: 48%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 45%;
 }
 
 .detailItem h2 {
@@ -52,11 +48,12 @@
 }
 
 .additionalInfo {
-  margin-top: 2rem;
+  margin: 4rem 0 2rem 0;
   background-color: #fff;
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
 }
 
 .additionalInfo h2 {
@@ -71,24 +68,8 @@
   line-height: 1.6;
 }
 
-.orderButton {
-  background-color: #9292928a;
-  color: #fff;
-  padding: 1rem 2.5rem;
-  font-size: 20px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
-  margin-top: 5rem;
-}
-
-.orderButton:hover {
-  background-color: #da7426;
-  box-shadow: 0 0 10px #da7426;
-}
-
-.orderButton:active {
-  background-color: #a64c14;
-  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
+.buttonContainer {
+  display: flex;
+  justify-content: center; 
+  margin-top: 1rem;
 }

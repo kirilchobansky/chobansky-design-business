@@ -91,3 +91,10 @@
 - add like, dislike and getLikedProjects in user-api
 - make getLikedProjects as custom hook
 - add functionality in projects-list component
+
+11. Wishlist
+
+- add component
+- add html and css
+- get liked projects
+- load projects

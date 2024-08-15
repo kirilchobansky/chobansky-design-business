@@ -42,29 +42,6 @@
     margin-top: auto;
 }
 
-.item .buttons a {
-    text-decoration: none;
-    color: #000;
-}
-
-.item .buttons .more-details {
-    background-color: #d3d3d38a;
-    padding: 0.7rem 2rem;
-    cursor: pointer;
-    transition: 0.5s;
-}
-
-.item .buttons .more-details:hover {
-  background-color: #da7426;
-  box-shadow: 0 0 10px #da7426;
-  color: #fff;
-}
-
-.item .buttons .more-details:active {
-    background-color: #a64c14;
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
 .item .buttons .add-to-favorite {
     transition: 0.5s;
     font-size: 20px;

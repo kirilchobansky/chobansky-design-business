@@ -25,18 +25,22 @@ export const useDeleteUser = () => {
     return deletedUserHandler;
 };
 
-export const useGetLikedProjects = (userId) => {
+export const useGetLikedProjects = (userId, type) => {
     const [likedProjects, setLikedProjects] = useState({});
 
     useEffect(() => {
         (async () => {
             try {
-                const initialLikes = await getLikedProjects(userId);
-                const likesMap = initialLikes.reduce((acc, project) => {
+                const likedProjectsAsArray = await getLikedProjects(userId);
+                const likedProjectsAsObject = likedProjectsAsArray.reduce((acc, project) => {
                     acc[project._id] = true;
                     return acc;
                 }, {});
-                setLikedProjects(likesMap);
+                if (type === 'array') {
+                    setLikedProjects(likedProjectsAsArray);
+                } else if (type === 'object') {
+                    setLikedProjects(likedProjectsAsObject);
+                }
             } catch (error) {
                 console.error("Failed to fetch liked projects:", error);
             }

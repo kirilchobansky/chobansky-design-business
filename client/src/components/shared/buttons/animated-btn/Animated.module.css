@@ -1,0 +1,86 @@
+.animated-button {
+  text-decoration: none;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s ease;
+  animation: glowing 1.5s infinite alternate;
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px #6e8efb, 0 0 10px #6e8efb, 0 0 20px #6e8efb;
+  }
+  100% {
+    box-shadow: 0 0 20px #a777e3, 0 0 30px #a777e3, 0 0 40px #a777e3;
+  }
+}
+
+.animated-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+  transition: all 0.75s ease;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.animated-button::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: all 0.5s ease;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+.animated-button:hover {
+  background: linear-gradient(135deg, #a777e3, #6e8efb);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px) scale(1.05);
+}
+
+.animated-button:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.animated-button:hover::after {
+  transform: rotate(90deg);
+}
+
+.animated-button:active {
+  transform: translateY(2px) scale(1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.animated-button:active::before {
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.animated-button:active::after {
+  transform: rotate(45deg);
+}
