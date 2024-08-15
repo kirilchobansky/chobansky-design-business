@@ -39,7 +39,7 @@ function generateToken(user: IUser) {
     isAdmin: user.isAdmin,
   };
 
-  const token = jwt.sign(payload, SECRET, { expiresIn: "30d" });
+  const accessToken = jwt.sign(payload, SECRET, { expiresIn: "30d" });
 
   return {
     id: user._id,
@@ -48,7 +48,7 @@ function generateToken(user: IUser) {
     address: user?.address,
     phone: user?.phone,
     isAdmin: user.isAdmin,
-    token: token,
+    accessToken,
   };
 }
 
@@ -66,9 +66,15 @@ const updateUserDetails = (
   email: string,
   address: string,
   phone: number
-) => User.findByIdAndUpdate(userId, { username, email, address, phone }, { new: true });
+) =>
+  User.findByIdAndUpdate(
+    userId,
+    { username, email, address, phone },
+    { new: true }
+  );
 
-const deleteUserById = (userId: Types.ObjectId) => User.findByIdAndDelete(userId);
+const deleteUserById = (userId: Types.ObjectId) =>
+  User.findByIdAndDelete(userId);
 
 const getLikedProjectsByUser = (userId: Types.ObjectId) =>
   User.findById(userId).populate("favoriteProjects").exec();

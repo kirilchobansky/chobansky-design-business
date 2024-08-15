@@ -41,11 +41,6 @@ router.get("/", async (req, res) => {
 //   res.send(foods);
 // });
 
-// router.get("/tags", async (req, res) => {
-//   const tags = await foodsService.getAllTags();
-//   res.send(tags);
-// });
-
 router.get("/:category", async (req, res) => {
   const category = req.params.category;
   const projects = await projectsService.getAllProjectsByCategory(category);

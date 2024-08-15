@@ -22,7 +22,7 @@ router.get("/latest-three/:projectId", async (req, res) => {
   res.send(comments);
 });
 
-router.post("/:projectId", async (req, res) => {
+router.post("/:projectId", isAuth, async (req, res) => {
   try {
     const projectId = new mongoose.Types.ObjectId(req.params.projectId);
     const { comment, userId } = req.body;
@@ -44,7 +44,7 @@ router.post("/:projectId", async (req, res) => {
   }
 });
 
-router.put("/:commentId", async (req, res) => {
+router.put("/:commentId", isAuth, async (req, res) => {
   const commentId = new mongoose.Types.ObjectId(req.params.commentId);
   const { updatedComment } = req.body;
 
@@ -52,7 +52,7 @@ router.put("/:commentId", async (req, res) => {
   res.status(200).json("You have successfully UPDATED the comment");
 });
 
-router.delete("/:commentId", async (req, res) => {
+router.delete("/:commentId", isAuth, async (req, res) => {
   const commentId = new mongoose.Types.ObjectId(req.params.commentId);
   const { userId, projectId } = req.body;
 

@@ -34,7 +34,7 @@ router.post("/register", isGuest, async (req, res) => {
   }
 });
 
-router.post("/like/:projectId", async (req, res) => {
+router.post("/like/:projectId", isAuth, async (req, res) => {
   const projectId = new mongoose.Types.ObjectId(req.params.projectId);
   const { userId } = req.body;
 
@@ -42,7 +42,7 @@ router.post("/like/:projectId", async (req, res) => {
   res.status(200).json("Successfully liked");
 });
 
-router.post("/dislike/:projectId", async (req, res) => {
+router.post("/dislike/:projectId", isAuth, async (req, res) => {
   const projectId = new mongoose.Types.ObjectId(req.params.projectId);
   const { userId } = req.body;
 
@@ -50,7 +50,7 @@ router.post("/dislike/:projectId", async (req, res) => {
   res.status(200).json("Successfully disliked");
 });
 
-router.put("/update-user-details/:userId", async (req, res) => {
+router.put("/update-user-details/:userId", isAuth, async (req, res) => {
   const userId = new mongoose.Types.ObjectId(req.params.userId);
   const { userData } = req.body;
 
@@ -64,14 +64,14 @@ router.put("/update-user-details/:userId", async (req, res) => {
   res.send(user);
 });
 
-router.delete("/:userId", async (req, res) => {
+router.delete("/:userId", isAuth, async (req, res) => {
   const userId = new mongoose.Types.ObjectId(req.params.userId);
 
   await usersService.deleteUserById(userId);
   res.status(200).json("You have successfully DELETED this account");
 });
 
-router.get("/favorite-projects/:userId", async (req, res) => {
+router.get("/favorite-projects/:userId", isAuth, async (req, res) => {
   try {
     const userId = new mongoose.Types.ObjectId(req.params.userId);
     const user = await usersService.getLikedProjectsByUser(userId);

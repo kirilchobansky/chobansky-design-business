@@ -1,15 +1,15 @@
 import { verify } from "jsonwebtoken";
 
-export default (req: any, res: any, next: any) => {
-  const token = req.headers.access_token as string;
+const SECRET = "ThatIsMyBestSecret";
 
+export default (req: any, res: any, next: any) => {
+  const token = req.headers["authorization"]?.split(" ")[1];
   if (token) {
     try {
-      const decodedUser = verify(token, "ThatIsMyBestSecret");
-      req.user = decodedUser;
-      return next();
+      verify(token, SECRET);
+      return res.status(403).send("Access denied. User is authenticated.");
     } catch (error) {
-      return res.status(401).send();
+      return next();
     }
   } else {
     return next();

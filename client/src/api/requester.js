@@ -8,20 +8,21 @@ const requester = async (method, url, data) => {
     if(accessToken) {
         options.headers = {
             ...options.headers,
-            'X-Authorization': accessToken
-        }
+            Authorization: `Bearer ${accessToken}`
+        };        
     }
 
     if(method !== 'GET'){
-        options.method = method;
+        options.method = method;        
     }
 
     if(data) {
         options.headers = {
+            ...options.headers,
             'Content-Type': 'application/json'
         }
 
-        options.body = JSON.stringify(data);
+        options.body = JSON.stringify(data);        
     }
 
     try {
