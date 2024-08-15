@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./CommentsSection.module.css";
 import commentsApi from "../../../api/comments-api";
 import { useAuthContext } from "../../../contexts/AuthContext";
@@ -8,20 +8,33 @@ import { useGetAllCommentsByProject } from "../../../hooks/useComments";
 export default function CommentsSection() {
   const { userId } = useAuthContext();
   const { projectId } = useParams();
+  const navigate = useNavigate();
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useGetAllCommentsByProject(projectId);
   const [editCommentId, setEditCommentId] = useState(null);
   const [editCommentText, setEditCommentText] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleCreate = async (e) => {
     e.preventDefault();
+
+    if (!userId) {
+      navigate("/login");
+      return;
+    }
+
+    if (!commentText.trim()) {
+      setErrorMessage("Comment cannot be empty.");
+      return;
+    }
+
     try {
       await commentsApi.create(projectId, userId, commentText);
       const updatedComments = await commentsApi.getAllByProject(projectId);
 
       setComments(updatedComments);
-
       setCommentText("");
+      setErrorMessage("");
     } catch (error) {
       console.error("Failed to add comment:", error);
     }
@@ -33,6 +46,11 @@ export default function CommentsSection() {
   };
 
   const handleSaveClick = async (commentId) => {
+    if (!editCommentText.trim()) {
+      setErrorMessage("Comment cannot be empty.");
+      return;
+    }
+
     try {
       await commentsApi.edit(commentId, editCommentText);
 
@@ -43,6 +61,7 @@ export default function CommentsSection() {
       );
       setEditCommentId(null);
       setEditCommentText("");
+      setErrorMessage(""); // Clear any existing error messages
     } catch (error) {
       console.error("Failed to edit comment:", error);
     }
@@ -76,8 +95,8 @@ export default function CommentsSection() {
           className={styles.addCommentButton}
           value="Add Comment"
         />
+        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
       </form>
-
       <div className={styles.commentsList}>
         {comments && comments.length > 0 ? (
           comments.map((comment) => (

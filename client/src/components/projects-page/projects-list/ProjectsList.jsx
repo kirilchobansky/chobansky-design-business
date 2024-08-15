@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { dislikeProject, likeProject } from "../../../api/user-api";
 import { useAuthContext } from "../../../contexts/AuthContext";
@@ -9,12 +9,17 @@ import ClassicOrange from "../../shared/buttons/classic-orange/ClassicOrange";
 
 export default function ProjectsList({ projects }) {
   const { userId } = useAuthContext();
-  const [likedProjects, setLikedProjects] = useGetLikedProjects(
-    userId,
-    "object"
-  );
+  const navigate = useNavigate();
+  const [likedProjects, setLikedProjects] = userId
+    ? useGetLikedProjects(userId, "object")
+    : [{}, () => {}];
 
   const handleLikeToggle = async (projectId) => {
+    if (!userId) {
+      navigate("/login");
+      return;
+    }
+
     if (likedProjects[projectId]) {
       await dislikeProject(projectId, userId);
       setLikedProjects((prev) => ({ ...prev, [projectId]: false }));

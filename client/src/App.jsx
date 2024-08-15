@@ -28,7 +28,6 @@ const App = () => {
             element={<ProjectDetails />}
           />
           <Route path="/contact" element={<ContactUs />} />
-          <Route path="/wishlist" element={<Wishlist />} />
           <Route element={<IsGuest />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
@@ -36,6 +35,7 @@ const App = () => {
           <Route element={<IsAuth />}>
             <Route path="/profile" element={<ProfileSection />} />
             <Route path="/logout" element={<Logout />} />
+            <Route path="/wishlist" element={<Wishlist />} />
           </Route>
         </Routes>
       </div>

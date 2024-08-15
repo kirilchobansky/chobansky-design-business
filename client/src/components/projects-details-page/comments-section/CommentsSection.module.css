@@ -100,3 +100,7 @@
 .deleteButton:hover {
   background-color: #ffcccc;
 }
+
+.error {
+  color: red;
+}
