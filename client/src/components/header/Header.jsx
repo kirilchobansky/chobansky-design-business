@@ -20,7 +20,7 @@ export default function Header() {
             <Link to="/how-to-choose">How to choose project</Link>
           </li>
           <li>
-            <Link to="/projects">Projects</Link>
+            <Link to="/projects/all">Projects</Link>
           </li>
           <li>
             <Link to="/contact">Contact</Link>
@@ -38,7 +38,7 @@ export default function Header() {
             </a>
           </li>
           <li>
-            <a href="">EN</a>
+            <a href="/">EN</a>
           </li>
         </ul>
       </nav>

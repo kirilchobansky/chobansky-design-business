@@ -5,6 +5,7 @@ export interface IProject {
   name: string;
   price: number;
   area: number;
+  category: string;
   images: string[];
   description: string;
   comments: Types.ObjectId[];
@@ -15,6 +16,7 @@ export const ProjectSchema = new Schema<IProject>(
     name: { type: String, required: true },
     price: { type: Number, required: true },
     area: { type: Number, required: true },
+    category: { type: String, required: true },
     images: { type: [String], required: true },
     description: { type: String, required: true },
     comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],

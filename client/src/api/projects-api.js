@@ -6,7 +6,10 @@ const getAll = () => requester.get(BASE_PROJECTS_URL);
 
 const getOneById = (id) => requester.get(`${BASE_PROJECTS_URL}/details/${id}`);
 
+const getByCategory = (category) => requester.get(`${BASE_PROJECTS_URL}/${category}`);
+
 export default {
     getAll,
-    getOneById
+    getOneById,
+    getByCategory
 }

@@ -21,7 +21,7 @@ const App = () => {
       <div className={styles["main-outlet"]}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/projects/" element={<ProjectsPage />} />
+          <Route path="/projects/:category" element={<ProjectsPage />} />
           <Route
             path="/projects/details/:projectId"
             element={<ProjectDetails />}

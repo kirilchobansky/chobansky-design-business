@@ -37,7 +37,7 @@ const getAll = () => Project.find();
 //   return tags;
 // };
 
-// const getAllProjectsByTag = (tag: string) => Project.find({ tags: tag });
+const getAllProjectsByCategory = (category: string) => Project.find({ category });
 
 const getProjectById = (ProjectId: string) =>
   Project.findById(ProjectId).populate("comments");
@@ -45,7 +45,7 @@ const getProjectById = (ProjectId: string) =>
 export default {
   getAll,
   getProjectById,
+  getAllProjectsByCategory,
   //   search,
-  //   getAllTags,
-  //   getAllProjectsByTag,
+  //   getAllCategorys,
 };

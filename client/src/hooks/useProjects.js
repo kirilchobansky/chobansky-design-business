@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
 import projectsApi from "../api/projects-api";
 
-export function useGetAllProjects() {
+export function useGetByCategory(categoty) {
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
         (async () => {
             try {
-                const projectsResult = await projectsApi.getAll();
-                setProjects(projectsResult);
+                if (categoty === 'all') {
+                    setProjects(await projectsApi.getAll());
+                } else {
+                    setProjects(await projectsApi.getByCategory(categoty));
+                }
             } catch (error) {
                 console.error("Failed to fetch projects:", error);
             }
         })();
-    }, []);
+    }, [categoty]);
 
     return [projects, setProjects];
 }
@@ -34,3 +37,4 @@ export function useGetOneProject(projectId) {
 
     return [project, setProject];
 }
+

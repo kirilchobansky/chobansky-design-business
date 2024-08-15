@@ -49,6 +49,7 @@
   - handle validation and errors
 
 - logout
+
   - create logout component
   - add logout api
   - add authorization in requester
@@ -65,10 +66,16 @@
   - add routes
   - add controllers, models and services
 
-8. Profile page 
-  - add html and css
-  - load dynamic information
-  - add update and delete functionalities
+8. Profile page
 
+- add html and css
+- load dynamic information
+- add update and delete functionalities
 
-
+9. Filter projects
+ - add category to project model
+ - preseed new projects
+ - add filter request to server
+ - add filter in projects-api
+ - add html and css for filter component
+ - load filtered projects

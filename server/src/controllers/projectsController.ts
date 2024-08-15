@@ -15,6 +15,21 @@ router.get("/seed", async (req, res) => {
   res.send("Seed Is Done!");
 });
 
+router.get("/delete", async (req, res) => {
+  const commentsCount = await Project.countDocuments();
+  if (commentsCount == 0) {
+    res.send("Nothing to delete!");
+    return;
+  }
+
+  await Project.deleteMany();
+  res.send("Delete Is Done!");
+});
+
+
+
+
+
 router.get("/", async (req, res) => {
   const projects = await projectsService.getAll();
   res.send(projects);
@@ -31,11 +46,11 @@ router.get("/", async (req, res) => {
 //   res.send(tags);
 // });
 
-// router.get("/tags/:tagName", async (req, res) => {
-//   const tagName = req.params.tagName;
-//   const foods = await foodsService.getAllFoodsByTag(tagName);
-//   res.send(foods);
-// });
+router.get("/:category", async (req, res) => {
+  const category = req.params.category;
+  const projects = await projectsService.getAllProjectsByCategory(category);
+  res.send(projects);
+});
 
 router.get("/details/:projectId", async (req, res) => {
   const projectId = req.params.projectId;

@@ -20,7 +20,6 @@ export default function ProjectDetails() {
 
         <DetailsSection project={project} />
       </div>
-
       <div className={styles["comments-section"]}>
         <CommentsSection comments={project.comments} />
       </div>

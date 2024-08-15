@@ -5,7 +5,7 @@ export default function HeroSection() {
   return (
     <div className={styles["container"]}>
       <h1 className={styles['main-header']}>Chobansky Design</h1>
-      <Link to='/projects' className={styles['animated-button']}>Catalog of projects</Link>
+      <Link to='/projects/all' className={styles['animated-button']}>Catalog of projects</Link>
     </div>
   );
 }
