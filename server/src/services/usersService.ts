@@ -52,11 +52,11 @@ function generateToken(user: IUser) {
   };
 }
 
-const likeFood = (foodId: string, userId: Types.ObjectId) =>
-  User.findByIdAndUpdate(userId, { $push: { favoriteFoods: foodId } });
+const likeProject = (projectId: Types.ObjectId, userId: Types.ObjectId) =>
+  User.findByIdAndUpdate(userId, { $push: { favoriteProjects: projectId } });
 
-const dislikeFood = (foodId: string, userId: Types.ObjectId) =>
-  User.findByIdAndUpdate(userId, { $pull: { favoriteFoods: foodId } });
+const dislikeProject = (projectId: Types.ObjectId, userId: Types.ObjectId) =>
+  User.findByIdAndUpdate(userId, { $pull: { favoriteProjects: projectId } });
 
 const getUserById = (userId: Types.ObjectId) => User.findById(userId);
 
@@ -70,17 +70,17 @@ const updateUserDetails = (
 
 const deleteUserById = (userId: Types.ObjectId) => User.findByIdAndDelete(userId);
 
-const getUserByIdWithFoods = (userId: Types.ObjectId) =>
-  User.findById(userId).populate("favoriteFoods");
+const getLikedProjectsByUser = (userId: Types.ObjectId) =>
+  User.findById(userId).populate("favoriteProjects").exec();
 
 export default {
   login,
   register,
   findOne,
-  likeFood,
-  dislikeFood,
+  likeProject,
+  dislikeProject,
   getUserById,
   updateUserDetails,
-  getUserByIdWithFoods,
-  deleteUserById
+  getLikedProjectsByUser,
+  deleteUserById,
 };

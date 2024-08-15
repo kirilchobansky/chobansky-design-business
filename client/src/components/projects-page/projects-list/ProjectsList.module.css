@@ -68,11 +68,18 @@
 .item .buttons .add-to-favorite {
     transition: 0.5s;
     font-size: 20px;
+    background: none;
+    border: none;
+}
+
+.favorite {
+    color: red;
 }
 
 .item .buttons .add-to-favorite:hover {
     transform: scale(1.2);
     color: #da7426;
+    cursor: pointer;
 }
 
 .noProjects {

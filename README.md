@@ -73,9 +73,21 @@
 - add update and delete functionalities
 
 9. Filter projects
- - add category to project model
- - preseed new projects
- - add filter request to server
- - add filter in projects-api
- - add html and css for filter component
- - load filtered projects
+
+- add category to project model
+- preseed new projects
+- add filter request to server
+- add filter in projects-api
+- add html and css for filter component
+- load filtered projects
+
+10. Like Project
+
+- add methods in server services
+  - add like
+  - add dislike
+  - add getLikedProjects
+- add them in controller
+- add like, dislike and getLikedProjects in user-api
+- make getLikedProjects as custom hook
+- add functionality in projects-list component

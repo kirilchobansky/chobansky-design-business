@@ -1,4 +1,5 @@
-import { deleteUser, updateUser } from "../api/user-api";
+import { useEffect, useState } from "react";
+import { deleteUser, getLikedProjects, updateUser } from "../api/user-api";
 import { useAuthContext } from "../contexts/AuthContext";
 
 export const useUpdateUser = () => {
@@ -11,7 +12,7 @@ export const useUpdateUser = () => {
     }
 
     return updatedUserHandler;
-}
+};
 
 export const useDeleteUser = () => {
     const { changeAuthState } = useAuthContext();
@@ -22,4 +23,25 @@ export const useDeleteUser = () => {
     }
 
     return deletedUserHandler;
-}
+};
+
+export const useGetLikedProjects = (userId) => {
+    const [likedProjects, setLikedProjects] = useState({});
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const initialLikes = await getLikedProjects(userId);
+                const likesMap = initialLikes.reduce((acc, project) => {
+                    acc[project._id] = true;
+                    return acc;
+                }, {});
+                setLikedProjects(likesMap);
+            } catch (error) {
+                console.error("Failed to fetch liked projects:", error);
+            }
+        })();
+    }, [userId]);
+
+    return [likedProjects, setLikedProjects];
+};

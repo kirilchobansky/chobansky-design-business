@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import styles from "./ImageSlider.module.css";
 
 const ImageSlider = ({ images }) => {
-  const [currentIndex, setCurrentIndex] = useState(1); 
+  const [currentIndex, setCurrentIndex] = useState(0); // Initialize with 0, not 1
 
   const handlePrevClick = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
+    setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
 
   const handleNextClick = () => {
-    if (currentIndex < images.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    }
+    setCurrentIndex((prevIndex) => Math.min(prevIndex + 1, images.length - 1));
+  };
+
+  const handleThumbnailClick = (index) => {
+    setCurrentIndex(index);
   };
 
   return (
@@ -38,9 +38,13 @@ const ImageSlider = ({ images }) => {
                 src={image}
                 alt={`Slide ${index + 1}`}
                 className={`${styles.slideImage} ${
-                  index === 1 ? styles.active : ""
+                  index + Math.max(currentIndex - 1, 0) === currentIndex
+                    ? styles.active
+                    : ""
                 }`}
-                onClick={() => setCurrentIndex(currentIndex + index - 1)}
+                onClick={() =>
+                  handleThumbnailClick(index + Math.max(currentIndex - 1, 0))
+                }
               />
             ))}
         </div>
