@@ -96,7 +96,7 @@ router.get("/search/:searchName", async (req, res) => {
   res.send(projects);
 });
 
-router.patch("/change-pass", async (req, res) => {
+router.patch("/change-pass", isAuth, async (req, res) => {
   const { userId, oldPassword, newPassword } = req.body;
   try {
     const hash = await bcrypt.hash(newPassword, 12);

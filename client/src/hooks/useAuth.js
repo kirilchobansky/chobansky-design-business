@@ -1,4 +1,4 @@
-import { changePassword, login, register } from "../api/auth-api"
+import { login, register } from "../api/auth-api"
 import { useAuthContext } from "../contexts/AuthContext";
 
 export const useLogin = () => {
@@ -35,15 +35,4 @@ export const useLogout = () => {
     }
 
     return logoutHandler;
-}
-
-export const useChangePassword = () => {
-    const { changeAuthState } = useAuthContext();
-
-    const changePasswordHandler = async (userId, oldPassword, newPassword) => {
-        const newUser = await changePassword(userId, oldPassword, newPassword);
-        changeAuthState(newUser);
-    }
-
-    return changePasswordHandler;
 }

@@ -40,7 +40,7 @@ function generateToken(user: IUser) {
     isAdmin: user.isAdmin,
   };
 
-  const accessToken = jwt.sign(payload, SECRET, { expiresIn: "30d" });
+  const accessToken = jwt.sign(payload, SECRET, { expiresIn: "2h" });
 
   return {
     id: user._id,
@@ -61,18 +61,25 @@ const dislikeProject = (projectId: Types.ObjectId, userId: Types.ObjectId) =>
 
 const getUserById = (userId: Types.ObjectId) => User.findById(userId);
 
-const updateUserDetails = (
+const updateUserDetails = async (
   userId: Types.ObjectId,
   username: string,
   email: string,
   address: string,
   phone: number
-) =>
-  User.findByIdAndUpdate(
+) => {
+  const updatedUser = await User.findByIdAndUpdate(
     userId,
     { username, email, address, phone },
     { new: true }
   );
+
+  if (!updatedUser) {
+    throw new Error("User not found or update failed.");
+  }
+
+  return generateToken(updatedUser);
+};
 
 const deleteUserById = (userId: Types.ObjectId) =>
   User.findByIdAndDelete(userId);
@@ -108,7 +115,11 @@ const changePassword = async (
     { new: true }
   );
 
-  return updatedUser;
+  if (!updatedUser) {
+    throw new Error("Failed to update password.");
+  }
+
+  return generateToken(updatedUser);
 };
 
 export default {

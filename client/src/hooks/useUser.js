@@ -69,3 +69,14 @@ export const useGetSearchProjects = (search) => {
 
     return [projects, setProjects];
 };
+
+export const useChangePassword = () => {
+    const { changeAuthState } = useAuthContext();
+
+    const changePasswordHandler = async (userId, oldPassword, newPassword) => {
+        const newUser = await userApi.changePassword(userId, oldPassword, newPassword);
+        changeAuthState(newUser);
+    }
+
+    return changePasswordHandler;
+}

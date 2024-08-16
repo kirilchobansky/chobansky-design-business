@@ -14,11 +14,14 @@ const getLikedProjects = (userId) => requester.get(`${BASE_USERS_URL}/favorite-p
 
 const search = (search) => requester.get(`${BASE_USERS_URL}/search/${search}`);
 
+const changePassword = (userId, oldPassword, newPassword) => requester.patch(`${BASE_USERS_URL}/change-pass`, { userId, oldPassword, newPassword });
+
 export default {
     updateUser,
     deleteUser,
     likeProject,
     dislikeProject,
     getLikedProjects,
-    search
+    search,
+    changePassword
 }

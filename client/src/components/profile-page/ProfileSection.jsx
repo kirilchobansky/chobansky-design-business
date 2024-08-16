@@ -3,12 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./ProfileSection.module.css";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { useDeleteUser, useUpdateUser } from "../../hooks/useUser";
-import { useChangePassword } from "../../hooks/useAuth"; 
+import { useChangePassword } from "../../hooks/useUser";
 
 export default function ProfileSection() {
   const updateUser = useUpdateUser();
   const deleteUser = useDeleteUser();
-  const changePassword = useChangePassword(); 
+  const changePassword = useChangePassword();
   const navigate = useNavigate();
 
   const {
@@ -66,7 +66,6 @@ export default function ProfileSection() {
 
   const handleSaveChanges = async (e) => {
     e.preventDefault();
-
     try {
       await updateUser(userId, formData);
     } catch (error) {

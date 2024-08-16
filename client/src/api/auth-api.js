@@ -6,4 +6,3 @@ export const login = (email, password) => requester.post(`${BASE_URL}/login`, { 
 
 export const register = (email, username, password) => requester.post(`${BASE_URL}/register`, { email, username, password });
 
-export const changePassword = (userId, oldPassword, newPassword) => requester.patch(`${BASE_URL}/change-pass`, { userId, oldPassword, newPassword });
