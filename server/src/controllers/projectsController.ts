@@ -26,20 +26,10 @@ router.get("/delete", async (req, res) => {
   res.send("Delete Is Done!");
 });
 
-
-
-
-
 router.get("/", async (req, res) => {
   const projects = await projectsService.getAll();
   res.send(projects);
 });
-
-// router.get("/search/:searchName", async (req, res) => {
-//   const searchName = req.params.searchName;
-//   const foods = await foodsService.search(searchName);
-//   res.send(foods);
-// });
 
 router.get("/:category", async (req, res) => {
   const category = req.params.category;

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 
-import { dislikeProject, likeProject } from "../../../api/user-api";
+import userApi from "../../../api/user-api";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { useGetLikedProjects } from "../../../hooks/useUser";
 
@@ -21,10 +21,10 @@ export default function ProjectsList({ projects }) {
     }
 
     if (likedProjects[projectId]) {
-      await dislikeProject(projectId, userId);
+      await userApi.dislikeProject(projectId, userId);
       setLikedProjects((prev) => ({ ...prev, [projectId]: false }));
     } else {
-      await likeProject(projectId, userId);
+      await userApi.likeProject(projectId, userId);
       setLikedProjects((prev) => ({ ...prev, [projectId]: true }));
     }
   };

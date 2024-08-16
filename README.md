@@ -98,3 +98,11 @@
 - add html and css
 - get liked projects
 - load projects
+
+12. Search
+
+- create component search
+- add route in app
+- create request to server
+- create custom hook for search
+- load search data in component

@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { Types } from "mongoose";
 import { User, IUser } from "../models/User";
+import { Project } from "../models/Project";
 
 const SECRET = "ThatIsMyBestSecret";
 
@@ -79,6 +80,12 @@ const deleteUserById = (userId: Types.ObjectId) =>
 const getLikedProjectsByUser = (userId: Types.ObjectId) =>
   User.findById(userId).populate("favoriteProjects").exec();
 
+const search = (search: string) => {
+  const searchRegEx = new RegExp(search, "i");
+  const projects = Project.find({ name: { $regex: searchRegEx } });
+  return projects;
+};
+
 export default {
   login,
   register,
@@ -89,4 +96,5 @@ export default {
   updateUserDetails,
   getLikedProjectsByUser,
   deleteUserById,
+  search
 };

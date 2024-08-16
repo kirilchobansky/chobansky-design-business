@@ -22,7 +22,7 @@ export default function DetailsSection({ project }) {
         <p>{project.description}</p>
       </div>
       <div className={styles.buttonContainer}>
-        <ClassicOrange url='/order' text="Place Order" />
+        <ClassicOrange url="/order" text="Make an Enquiry " />
       </div>
     </div>
   );

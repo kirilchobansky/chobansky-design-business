@@ -1,10 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./Header.module.css";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { useState } from "react";
 
 export default function Header() {
   const { isAuthenticated, username } = useAuthContext();
+  const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = async () => {
+    if (searchText.trim()) {
+      navigate(`/search/${searchText}`);
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
 
   return (
     <header>
@@ -54,8 +69,10 @@ export default function Header() {
               type="text"
               placeholder="Search for a project..."
               className={styles["search-input"]}
+              onChange={(e) => setSearchText(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
-            <button className={styles["search-btn"]}>
+            <button className={styles["search-btn"]} onClick={handleSearch}>
               <i className="fa-solid fa-magnifying-glass"></i>
             </button>
           </li>

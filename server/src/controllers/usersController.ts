@@ -88,4 +88,10 @@ router.get("/favorite-projects/:userId", isAuth, async (req, res) => {
   }
 });
 
+router.get("/search/:searchName", async (req, res) => {
+  const searchName = req.params.searchName;
+  const projects = await usersService.search(searchName);
+  res.send(projects);
+});
+
 export default router;

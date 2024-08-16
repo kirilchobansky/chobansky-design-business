@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { deleteUser, getLikedProjects, updateUser } from "../api/user-api";
+import userApi from "../api/user-api";
 import { useAuthContext } from "../contexts/AuthContext";
 
 export const useUpdateUser = () => {
     const { changeAuthState } = useAuthContext();
 
     const updatedUserHandler = async (userId, userData) => {
-        const updatedUser = await updateUser(userId, userData);
+        const updatedUser = await userApi.updateUser(userId, userData);
         changeAuthState(updatedUser);
         return updatedUser;
     }
@@ -18,7 +18,7 @@ export const useDeleteUser = () => {
     const { changeAuthState } = useAuthContext();
 
     const deletedUserHandler = async (userId) => {
-        const deletedUser = await deleteUser(userId);
+        const deletedUser = await userApi.deleteUser(userId);
         changeAuthState(deletedUser);
     }
 
@@ -26,12 +26,16 @@ export const useDeleteUser = () => {
 };
 
 export const useGetLikedProjects = (userId, type) => {
-    const [likedProjects, setLikedProjects] = useState({});
+    const [likedProjects, setLikedProjects] = useState(
+        type === 'array' ? [] : {}
+    );
 
     useEffect(() => {
+        if (!userId) return;
+
         (async () => {
             try {
-                const likedProjectsAsArray = await getLikedProjects(userId);
+                const likedProjectsAsArray = await userApi.getLikedProjects(userId);
                 const likedProjectsAsObject = likedProjectsAsArray.reduce((acc, project) => {
                     acc[project._id] = true;
                     return acc;
@@ -45,7 +49,23 @@ export const useGetLikedProjects = (userId, type) => {
                 console.error("Failed to fetch liked projects:", error);
             }
         })();
-    }, [userId]);
+    }, [userId, type]);
 
     return [likedProjects, setLikedProjects];
+};
+
+export const useGetSearchProjects = (search) => {
+    const [projects, setProjects] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                setProjects(await userApi.search(search));
+            } catch (error) {
+                console.error("Failed to fetch searched projects:", error);
+            }
+        })();
+    }, [search]);
+
+    return [projects, setProjects];
 };

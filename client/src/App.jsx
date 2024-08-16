@@ -14,6 +14,7 @@ import IsAuth from "./guards/isAuth";
 import IsGuest from "./guards/isGuest";
 import ContactUs from "./components/contact-us/ContactUs";
 import Wishlist from "./components/wishlist/Wishlist";
+import Search from "./components/search/Search";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects/:category" element={<ProjectsPage />} />
+          <Route path="/search/:search" element={<Search />} />
           <Route
             path="/projects/details/:projectId"
             element={<ProjectDetails />}
