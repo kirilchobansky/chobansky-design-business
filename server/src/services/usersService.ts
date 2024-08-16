@@ -86,6 +86,31 @@ const search = (search: string) => {
   return projects;
 };
 
+const changePassword = async (
+  userId: Types.ObjectId,
+  oldPassword: string,
+  newPassword: string
+) => {
+  const user = await User.findOne({ _id: userId });
+
+  if (!user) {
+    throw new Error("Cannot find user!");
+  }
+
+  const isValid = await bcrypt.compare(oldPassword, user.password);
+  if (!isValid) {
+    throw new Error("Wrong password!");
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(
+    userId,
+    { password: newPassword },
+    { new: true }
+  );
+
+  return updatedUser;
+};
+
 export default {
   login,
   register,
@@ -96,5 +121,6 @@ export default {
   updateUserDetails,
   getLikedProjectsByUser,
   deleteUserById,
-  search
+  search,
+  changePassword,
 };

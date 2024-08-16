@@ -1,4 +1,6 @@
 import express from "express";
+import bcrypt from "bcrypt";
+
 import usersService from "../services/usersService";
 import mongoose from "mongoose";
 import isGuest from "../middlewares/isGuest";
@@ -92,6 +94,17 @@ router.get("/search/:searchName", async (req, res) => {
   const searchName = req.params.searchName;
   const projects = await usersService.search(searchName);
   res.send(projects);
+});
+
+router.patch("/change-pass", async (req, res) => {
+  const { userId, oldPassword, newPassword } = req.body;
+  try {
+    const hash = await bcrypt.hash(newPassword, 12);
+    const user = await usersService.changePassword(userId, oldPassword, hash);
+    res.send(user);
+  } catch (error: any) {
+    res.send(error.message);
+  }
 });
 
 export default router;

@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./ProfileSection.module.css";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { useDeleteUser, useUpdateUser } from "../../hooks/useUser";
+import { useChangePassword } from "../../hooks/useAuth"; 
 
 export default function ProfileSection() {
   const updateUser = useUpdateUser();
   const deleteUser = useDeleteUser();
+  const changePassword = useChangePassword(); 
   const navigate = useNavigate();
 
   const {
@@ -31,6 +33,14 @@ export default function ProfileSection() {
     address: initialAddress || "",
   });
 
+  const [passwordData, setPasswordData] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
+
+  const [passwordError, setPasswordError] = useState(null);
+
   const toggleEdit = (field) => {
     setIsEditing((prevState) => ({
       ...prevState,
@@ -41,6 +51,14 @@ export default function ProfileSection() {
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const handlePasswordChange = (e) => {
+    const { id, value } = e.target;
+    setPasswordData((prevState) => ({
       ...prevState,
       [id]: value,
     }));
@@ -62,10 +80,39 @@ export default function ProfileSection() {
     });
   };
 
+  const handlePasswordUpdate = async (e) => {
+    e.preventDefault();
+    setPasswordError(null);
+
+    if (passwordData.newPassword !== passwordData.confirmPassword) {
+      setPasswordError("New passwords do not match.");
+      return;
+    }
+
+    try {
+      await changePassword(
+        userId,
+        passwordData.currentPassword,
+        passwordData.newPassword
+      );
+      setPasswordData({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
+      alert("Password successfully changed!");
+    } catch (error) {
+      setPasswordError(
+        "Failed to change password. Please check your current password and try again."
+      );
+      console.error(error);
+    }
+  };
+
   const handleDeleteUser = async () => {
-     try {
+    try {
       await deleteUser(userId);
-      navigate('/');
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
@@ -156,19 +203,53 @@ export default function ProfileSection() {
             </button>
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="password">Change Password</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter new password"
-            />
-          </div>
-          <div className={styles.formGroup}>
             <button className={styles.saveBtn} type="submit">
               Save Changes
             </button>
           </div>
         </form>
+
+        <form className={styles.passwordForm} onSubmit={handlePasswordUpdate}>
+          <div className={styles.formGroup}>
+            <label htmlFor="currentPassword">Current Password</label>
+            <input
+              type="password"
+              id="currentPassword"
+              value={passwordData.currentPassword}
+              onChange={handlePasswordChange}
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="newPassword">New Password</label>
+            <input
+              type="password"
+              id="newPassword"
+              value={passwordData.newPassword}
+              onChange={handlePasswordChange}
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="confirmPassword">Confirm New Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              value={passwordData.confirmPassword}
+              onChange={handlePasswordChange}
+              required
+            />
+          </div>
+          {passwordError && (
+            <p className={styles.passwordError}>{passwordError}</p>
+          )}
+          <div className={styles.formGroup}>
+            <button className={styles.saveBtn} type="submit">
+              Change Password
+            </button>
+          </div>
+        </form>
+
         <div className={styles["bottom-btns"]}>
           <Link to="/logout" className={styles.logoutBtn}>
             Logout
@@ -177,6 +258,7 @@ export default function ProfileSection() {
             Delete Account
           </button>
         </div>
+
         <div className={styles.socialLinks}>
           <h3>Connect with me:</h3>
           <a href="#" className={styles.socialLink}>
