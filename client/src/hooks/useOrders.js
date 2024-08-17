@@ -9,7 +9,7 @@ export function useGetOrdersByUser(userId) {
             try {
                 if (userId) {
                     const fetchedOrders = await ordersApi.getOrdersByUser(userId);
-                    setOrders(fetchedOrders.length);
+                    setOrders(fetchedOrders);
                 } else {
                     setOrders([]);
                 }

@@ -59,7 +59,7 @@
     cursor: pointer;
 }
 
-.noProjects {
+.noContent {
   font-size: 1.5rem;
   color: #777;
   margin: 4rem 0 0 28rem;

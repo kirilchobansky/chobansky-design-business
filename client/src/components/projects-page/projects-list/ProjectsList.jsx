@@ -64,7 +64,7 @@ export default function ProjectsList({ projects }) {
           </div>
         ))
       ) : (
-        <h2 className={styles.noProjects}>No projects here!</h2>
+        <h2 className={styles.noContent}>No projects here!</h2>
       )}
     </div>
   );
