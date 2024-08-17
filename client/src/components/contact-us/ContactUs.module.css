@@ -1,0 +1,120 @@
+/* Container styling */
+.contactContainer {
+  background: linear-gradient(135deg, #f0f2f5, #ffffff);
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header styling */
+.contactHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contactHeader h1 {
+  font-size: 2.8rem;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.contactHeader h1:hover {
+  color: #3f51b5;
+}
+
+.contactHeader p {
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Form styling */
+.contactForm {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  max-width: 600px;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Form group styling */
+.formGroup {
+  margin-bottom: 24px;
+}
+
+.formGroup label {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 8px;
+  display: block;
+  font-weight: 500;
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: #3f51b5;
+  background-color: #fff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(63, 81, 181, 0.3);
+}
+
+/* Textarea specific styling */
+.formGroup textarea {
+  resize: vertical;
+  min-height: 180px;
+}
+
+/* Submit button styling */
+.submitBtn {
+  background-color: #3f51b5;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.submitBtn:hover {
+  background-color: #303f9f;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contactContainer {
+    padding: 30px;
+  }
+
+  .contactForm {
+    padding: 25px;
+  }
+
+  .contactHeader h1 {
+    font-size: 2.2rem;
+  }
+
+  .contactHeader p {
+    font-size: 1.1rem;
+  }
+}

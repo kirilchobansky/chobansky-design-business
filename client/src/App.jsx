@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./App.module.css";
 import Home from "./components/home/Home";
@@ -43,6 +45,7 @@ const App = () => {
           </Route>
         </Routes>
       </div>
+      <ToastContainer />
     </AuthContextProvider>
   );
 };
