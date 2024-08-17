@@ -5,7 +5,6 @@ import usersService from "../services/usersService";
 import mongoose from "mongoose";
 import isGuest from "../middlewares/isGuest";
 import isAuth from "../middlewares/isAuth";
-import upload from "../multerConfig";
 const router = express.Router();
 
 router.post("/login", isGuest, async (req, res) => {
@@ -107,30 +106,5 @@ router.patch("/change-pass", isAuth, async (req, res) => {
     res.send(error.message);
   }
 });
-
-router.post(
-  "/upload-image",
-  isAuth,
-  upload.single("profilePicture"),
-  async (req, res) => {
-    try {
-      // const { userId } = req.body;
-      const file = req.file;
-
-      console.log(req.body);
-      console.log(file);
-
-      if (!file) {
-        return res.status(400).json({ message: "No file uploaded." });
-      }
-
-      // await usersService.uploadProfilePicture(userId, file);
-
-      res.json("c");
-    } catch (error: any) {
-      res.status(500).send(error.message);
-    }
-  }
-);
 
 export default router;

@@ -40,7 +40,7 @@ function generateToken(user: IUser) {
     isAdmin: user.isAdmin,
   };
 
-  const accessToken = jwt.sign(payload, SECRET, { expiresIn: "2h" });
+  const accessToken = jwt.sign(payload, SECRET, { expiresIn: "3d" });
 
   return {
     id: user._id,

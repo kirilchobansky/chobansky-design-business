@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./ProfileSection.module.css";
 import { useAuthContext } from "../../contexts/AuthContext";
-import { useDeleteUser, useUpdateUser } from "../../hooks/useUser";
-import { useChangePassword } from "../../hooks/useUser";
+import {
+  useDeleteUser,
+  useUpdateUser,
+  useChangePassword,
+} from "../../hooks/useUser";
 
 export default function ProfileSection() {
   const updateUser = useUpdateUser();
@@ -121,8 +124,10 @@ export default function ProfileSection() {
     <div className={styles.profileContainer}>
       <div className={styles.profileHeader}>
         <div className={styles.profilePicture}>
-          <img src="https://via.placeholder.com/150" alt="User Profile" />
-          <button className={styles.editPictureBtn}>Change Picture</button>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg"
+            alt="User Profile"
+          />
         </div>
         <div className={styles.userInfo}>
           <h1 className={styles.userName}>{formData.username}</h1>

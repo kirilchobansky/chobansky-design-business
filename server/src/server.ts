@@ -14,8 +14,8 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.send('Server is working!');
-})
+  res.send("Server is working!");
+});
 
 app.use(router);
 

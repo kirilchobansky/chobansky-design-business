@@ -5,24 +5,24 @@ const requester = async (method, url, data) => {
 
     const accessToken = getAccessToken();
 
-    if(accessToken) {
+    if (accessToken) {
         options.headers = {
             ...options.headers,
             Authorization: `Bearer ${accessToken}`
-        };        
+        };
     }
 
-    if(method !== 'GET'){
-        options.method = method;        
+    if (method !== 'GET') {
+        options.method = method;
     }
 
-    if(data) {
+    if (data) {
         options.headers = {
             ...options.headers,
             'Content-Type': 'application/json'
         }
 
-        options.body = JSON.stringify(data);        
+        options.body = JSON.stringify(data);
     }
 
     try {
@@ -32,16 +32,22 @@ const requester = async (method, url, data) => {
             return;
         }
 
-        const result = await response.json();
+        const contentType = response.headers.get("Content-Type");
+        if (contentType && contentType.includes("application/json")) {
+            const result = await response.json();
 
-        if (!response.ok) {
-            throw result;
+            if (!response.ok) {
+                throw new Error(result.message || 'Server Error');
+            }
+
+            return result;
+        } else {
+            const text = await response.text();
+            throw new Error(`Unexpected content type: ${contentType}. Response: ${text}`);
         }
-
-        return result;
     } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error; 
+        console.error('Error fetching data:', error.message);
+        throw error;
     }
 }
 
