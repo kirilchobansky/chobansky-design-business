@@ -3,20 +3,39 @@ import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import { useAuthContext } from "../../contexts/AuthContext";
 import ordersApi from "../../api/orders-api";
+import { useGetOrdersByUser } from "../../hooks/useOrders";
 
 export default function Header() {
   const { isAuthenticated, username, userId } = useAuthContext();
   const [searchText, setSearchText] = useState("");
   const navigate = useNavigate();
   const [orderCount, setOrderCount] = useState(0);
-  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    (async () => {
-      setOrders(await ordersApi.getOrdersByUser(userId));
-      setOrderCount(orders.length);
-    })();
-  }, [orders]);
+    const fetchOrders = async () => {
+      if (userId) {
+        const fetchedOrders = await ordersApi.getOrdersByUser(userId);
+        setOrderCount(fetchedOrders.length);
+      } else {
+        setOrderCount(0);
+      }
+    };
+
+    const handleOrderCreated = async () => {
+      if (userId) {
+        const fetchedOrders = await ordersApi.getOrdersByUser(userId);
+        setOrderCount(fetchedOrders.length);
+      }
+    };
+
+    fetchOrders();
+
+    window.addEventListener("orderCreated", handleOrderCreated);
+
+    return () => {
+      window.removeEventListener("orderCreated", handleOrderCreated);
+    };
+  }, [userId, isAuthenticated]);
 
   const handleSearch = () => {
     if (searchText.trim()) {

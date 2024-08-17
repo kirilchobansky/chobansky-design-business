@@ -23,6 +23,7 @@ const EnquiryForm = ({ project, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await ordersApi.create(formData, userId, project._id);
+    window.dispatchEvent(new Event("orderCreated"));
     onClose();
   };
 

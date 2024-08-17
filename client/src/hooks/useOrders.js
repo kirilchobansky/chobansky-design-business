@@ -7,8 +7,12 @@ export function useGetOrdersByUser(userId) {
     useEffect(() => {
         (async () => {
             try {
-                const ordersResult = await ordersApi.getOrdersByUser(userId);
-                setOrders(ordersResult);
+                if (userId) {
+                    const fetchedOrders = await ordersApi.getOrdersByUser(userId);
+                    setOrders(fetchedOrders.length);
+                } else {
+                    setOrders([]);
+                }
             } catch (error) {
                 console.error("Failed to fetch orders:", error);
             }
