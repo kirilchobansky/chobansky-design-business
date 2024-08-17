@@ -15,6 +15,7 @@ import IsGuest from "./guards/isGuest";
 import ContactUs from "./components/contact-us/ContactUs";
 import Wishlist from "./components/wishlist/Wishlist";
 import Search from "./components/search/Search";
+import Orders from "./components/orders/Orders";
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
             <Route path="/profile" element={<ProfileSection />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/orders" element={<Orders />} />
           </Route>
         </Routes>
       </div>

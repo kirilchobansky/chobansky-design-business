@@ -1,15 +1,24 @@
 import { Link, useNavigate } from "react-router-dom";
-
+import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import { useAuthContext } from "../../contexts/AuthContext";
-import { useState } from "react";
+import ordersApi from "../../api/orders-api";
 
 export default function Header() {
-  const { isAuthenticated, username } = useAuthContext();
+  const { isAuthenticated, username, userId } = useAuthContext();
   const [searchText, setSearchText] = useState("");
   const navigate = useNavigate();
+  const [orderCount, setOrderCount] = useState(0);
+  const [orders, setOrders] = useState([]);
 
-  const handleSearch = async () => {
+  useEffect(() => {
+    (async () => {
+      setOrders(await ordersApi.getOrdersByUser(userId));
+      setOrderCount(orders.length);
+    })();
+  }, [orders]);
+
+  const handleSearch = () => {
     if (searchText.trim()) {
       navigate(`/search/${searchText}`);
     }
@@ -43,12 +52,12 @@ export default function Header() {
         </ul>
         <ul className={styles["information"]}>
           <li>
-            <a href="">
+            <a href="tel:+359999999999">
               <i className="fa-solid fa-phone"></i>+359 999999999
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="#">
               <i className="fa-solid fa-location-dot"></i>Bul. Gotse Delchev
             </a>
           </li>
@@ -96,8 +105,13 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link to="/cart">
-              <i className="fa-solid fa-cart-shopping"></i>
+            <Link to="/orders">
+              <div className={styles["cart-container"]}>
+                <i className="fa-solid fa-cart-shopping"></i>
+                {orderCount > 0 && (
+                  <span className={styles["order-count"]}>{orderCount}</span>
+                )}
+              </div>
             </Link>
           </li>
         </ul>

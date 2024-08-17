@@ -5,6 +5,7 @@ export interface IOrder {
   email: string;
   name: string;
   phone: number;
+  owner: Types.ObjectId;
   project: Types.ObjectId;
 }
 
@@ -14,6 +15,7 @@ const OrderSchema = new Schema<IOrder>(
     email: { type: String, required: true },
     name: { type: String, required: true },
     phone: { type: Number, required: true },
+    owner: { type: Schema.Types.ObjectId, ref: "User" },
     project: { type: Schema.Types.ObjectId, ref: "Project" },
   },
   {

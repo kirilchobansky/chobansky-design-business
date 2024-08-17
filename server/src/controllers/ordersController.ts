@@ -18,25 +18,32 @@ router.post("/:projectId", async (req, res) => {
     const projectId = new mongoose.Types.ObjectId(req.params.projectId);
     const { enquiry, email, name, phone, userId } = req.body;
 
-    // console.log(req.body);
-    // console.log(projectId);
-    
     const orderData: IOrder = {
       enquiry,
       email,
       name,
       phone,
+      owner: userId,
       project: projectId,
     };
 
-    console.log(orderData);
-    
     const order = await ordersService.postOrder(orderData);
     await ordersService.updateUserPost(userId, order._id);
 
-    res.json('You have successfully created order');
+    res.json("You have successfully created order");
   } catch (error) {
     res.status(500).send("Error with sending order");
+  }
+});
+
+router.get("/:userId", async (req, res) => {
+  const userId = new mongoose.Types.ObjectId(req.params.userId);
+
+  try {
+    const orders = await ordersService.getOrdersByUser(userId);
+    res.send(orders);
+  } catch (error) {
+    res.status(500).send("Failed to get orders for that user");
   }
 });
 

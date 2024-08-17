@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./CommentsSection.module.css";
 import commentsApi from "../../../api/comments-api";
 import { useAuthContext } from "../../../contexts/AuthContext";
-import { useGetAllCommentsByProject } from "../../../hooks/useComments";
 
 export default function CommentsSection() {
   const { userId } = useAuthContext();
   const { projectId } = useParams();
   const navigate = useNavigate();
   const [commentText, setCommentText] = useState("");
-  const [comments, setComments] = useGetAllCommentsByProject(projectId);
+  const [comments, setComments] = useState([]);
   const [editCommentId, setEditCommentId] = useState(null);
   const [editCommentText, setEditCommentText] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      setComments(await commentsApi.getAllByProject(projectId));
+    })();
+  }, [comments]);
 
   const handleCreate = async (e) => {
     e.preventDefault();
@@ -30,9 +35,6 @@ export default function CommentsSection() {
 
     try {
       await commentsApi.create(projectId, userId, commentText);
-      const updatedComments = await commentsApi.getAllByProject(projectId);
-
-      setComments(updatedComments);
       setCommentText("");
       setErrorMessage("");
     } catch (error) {
@@ -61,7 +63,7 @@ export default function CommentsSection() {
       );
       setEditCommentId(null);
       setEditCommentText("");
-      setErrorMessage(""); // Clear any existing error messages
+      setErrorMessage("");
     } catch (error) {
       console.error("Failed to edit comment:", error);
     }

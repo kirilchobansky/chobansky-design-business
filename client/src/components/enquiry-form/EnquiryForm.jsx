@@ -22,7 +22,6 @@ const EnquiryForm = ({ project, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted:", formData);
     await ordersApi.create(formData, userId, project._id);
     onClose();
   };

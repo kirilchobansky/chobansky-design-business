@@ -39,7 +39,10 @@ export default function ProjectsList({ projects }) {
               alt={project.name}
               className={styles.image}
             />
-            <Link to={`details/${project.id}`} className={styles.name}>
+            <Link
+              to={`/projects/details/${project._id}`}
+              className={styles.name}
+            >
               {project.name}
             </Link>
             <div className={styles.buttons}>
