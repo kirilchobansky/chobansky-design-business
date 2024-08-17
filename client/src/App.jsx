@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -18,8 +18,15 @@ import ContactUs from "./components/contact-us/ContactUs";
 import Wishlist from "./components/wishlist/Wishlist";
 import Search from "./components/search/Search";
 import Orders from "./components/orders/Orders";
+import AboutUs from "./components/about-us/AboutUs";
+import Footer from "./components/footer/Footer";
+import HowToChooseProject from "./components/how-to-choose-project/HowToChooseProject";
 
 const App = () => {
+  const location = useLocation();
+
+  const isHomePage = location.pathname === "/";
+
   return (
     <AuthContextProvider>
       <Header />
@@ -33,6 +40,8 @@ const App = () => {
             element={<ProjectDetails />}
           />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/how-to-choose" element={<HowToChooseProject />} />
           <Route element={<IsGuest />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
@@ -45,6 +54,7 @@ const App = () => {
           </Route>
         </Routes>
       </div>
+      {!isHomePage && <Footer />}
       <ToastContainer />
     </AuthContextProvider>
   );

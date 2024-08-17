@@ -1,0 +1,77 @@
+/* Header section with enhanced background */
+.subHeader {
+  height: 40vh; /* Slightly taller for better visual impact */
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/public/images/background.jpg');
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.subHeader h1 {
+  font-size: 3rem; /* Increased for better visibility */
+  margin: 0;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Added shadow for better readability */
+}
+
+/* About Us section styling */
+.aboutUs {
+  width: 85%; /* Slightly increased for better content width */
+  margin: auto;
+  padding: 60px 0; /* Adjusted padding for a balanced look */
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap; /* Added wrap to handle smaller screens better */
+  gap: 20px; /* Added gap between columns */
+  justify-content: center;
+}
+
+.aboutCol {
+  flex: 1 1 45%; /* Adjusted for better responsiveness */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.aboutCol img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Added shadow for better visual depth */
+}
+
+.aboutCol h1 {
+  font-size: 2.5rem; /* Increased for emphasis */
+  color: #2c3e50; /* Darker color for better contrast */
+  margin-top: 0;
+}
+
+.aboutCol p {
+  font-size: 1.125rem; /* Adjusted for readability */
+  color: #34495e; /* Slightly lighter text color */
+  line-height: 1.8; /* Increased line-height for better readability */
+  margin: 15px 0 25px;
+}
+
+.redBtn {
+  border: 2px solid #f44336; /* Thicker border for prominence */
+  background: transparent;
+  color: #f44336;
+  padding: 12px 24px; /* Increased padding for a more substantial button */
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: 0.3s, color 0.3s;
+}
+
+.redBtn:hover {
+  background: #f44336;
+  color: #fff;
+}

@@ -1,0 +1,122 @@
+.container {
+  width: 100%;
+  margin: auto;
+  background: linear-gradient(to bottom right, #e0f7fa, #80deea); /* Light blue gradient */
+  border-radius: 10px; /* Optional: rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow */
+}
+
+.subHeader {
+  height: 40vh; /* Slightly taller for better visual impact */
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/public/images/background.jpg');
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.subHeader h1 {
+  font-size: 3rem; /* Increased for better visibility */
+  margin: 0;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Added shadow for better readability */
+}
+
+.timeline {
+  position: relative;
+  margin: 0 auto;
+  padding: 40px 0;
+  width: 50%;
+}
+
+.line {
+  position: absolute;
+  width: 4px;
+  background: linear-gradient(to bottom, #ff7e5f, #feb47b);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -2px;
+}
+
+.step {
+  padding: 20px;
+  margin-bottom: 50px;
+  position: relative;
+  width: 50%;
+}
+
+.stepLeft {
+  left: 0;
+  text-align: right;
+}
+
+.stepRight {
+  left: 50%;
+  text-align: left;
+}
+
+.stepContent {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  position: relative;
+  width: 80%;
+}
+
+.stepIcon {
+  font-size: 24px;
+  color: #f44336;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.stepLeft .stepIcon {
+  right: -30px;
+}
+
+.stepRight .stepIcon {
+  left: -30px;
+}
+
+.stepLeft .stepContent::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 8px;
+  border-color: transparent transparent transparent #ccc;
+}
+
+.stepRight .stepContent::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 8px 8px 0;
+  border-color: transparent #ccc transparent transparent;
+}
+
+.step h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.step p {
+  margin: 10px 0 0;
+  color: #555;
+}

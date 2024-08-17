@@ -1,0 +1,93 @@
+.footer {
+  background-color: #003471;
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.logo h2 {
+  font-size: 2rem;
+  margin: 0;
+  color: #fff;
+}
+
+.logo p {
+  font-size: 1rem;
+  color: #46a8c0;
+}
+
+.nav {
+  margin-bottom: 20px;
+}
+
+.nav h3 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: #46a8c0;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 3rem;
+}
+
+.nav li {
+  margin: 5px 0;
+}
+
+.nav a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 1rem;
+  color: #46a8c0;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.socialLinks {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.socialLinks h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #b9b9b9;
+}
+
+.socialLink {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 24px;
+  color: #6e8efb;
+  transition: color 0.3s;
+}
+
+.socialLink:hover {
+  color: #5b7cdb;
+}
+
+.bottomBar {
+  border-top: 1px solid #34495e;
+  padding-top: 20px;
+}
+
+.bottomBar p {
+  font-size: 0.875rem;
+  margin: 0;
+}
