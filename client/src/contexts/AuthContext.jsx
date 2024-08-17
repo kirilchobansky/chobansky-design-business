@@ -21,7 +21,7 @@ export const AuthContextProvider = (props) => {
     username: authState?.username,
     address: authState?.address,
     phone: authState?.phone,
-    accessToken: authState?.token,
+    accessToken: authState?.accessToken,
     isAuthenticated: !!authState?.email,
     changeAuthState,
     logout,

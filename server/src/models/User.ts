@@ -8,9 +8,11 @@ export interface IUser {
   password: string;
   address: string;
   phone: number;
+  profilePicture: string;
   isAdmin: boolean;
   favoriteProjects: Types.ObjectId[];
   comments: Types.ObjectId[];
+  orders: Types.ObjectId[];
 }
 
 const userSchema = new Schema<IUser>(
@@ -20,9 +22,11 @@ const userSchema = new Schema<IUser>(
     password: { type: String, required: true },
     address: { type: String },
     phone: { type: Number },
+    profilePicture: { type: String },
     isAdmin: { type: Boolean, required: true },
     favoriteProjects: [{ type: Schema.Types.ObjectId, ref: "Project" }],
     comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+    orders: [{ type: Schema.Types.ObjectId, ref: "Order" }],
   },
   {
     toJSON: { virtuals: true },

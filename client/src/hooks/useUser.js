@@ -80,3 +80,22 @@ export const useChangePassword = () => {
 
     return changePasswordHandler;
 }
+
+export function useUploadProfilePicture() {
+    const uploadProfilePictureHandler = async (userId, file) => {
+        const formData = new FormData();
+        formData.append("profilePicture", file);
+        formData.append("userId", userId);
+
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}:`, value);
+        }
+        try {
+            await userApi.uploadProfilePicture(formData);
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
+    return uploadProfilePictureHandler;
+}

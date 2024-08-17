@@ -1,7 +1,18 @@
-import ClassicOrange from "../../shared/buttons/classic-orange/ClassicOrange";
+import React, { useState } from "react";
 import styles from "./DetailsSection.module.css";
+import EnquiryForm from "../../enquiry-form/EnquiryForm";
 
 export default function DetailsSection({ project }) {
+  const [isFormVisible, setFormVisible] = useState(false);
+
+  const handleEnquiryClick = () => {
+    setFormVisible(true);
+  };
+
+  const handleCloseForm = () => {
+    setFormVisible(false);
+  };
+
   return (
     <div className={styles.detailsContainer}>
       <div className={styles.header}>
@@ -22,8 +33,14 @@ export default function DetailsSection({ project }) {
         <p>{project.description}</p>
       </div>
       <div className={styles.buttonContainer}>
-        <ClassicOrange url="/order" text="Make an Enquiry " />
+        <button onClick={handleEnquiryClick} className={styles.classic}>
+          Make an Enquiry
+        </button>
       </div>
+
+      {isFormVisible && (
+        <EnquiryForm project={project} onClose={handleCloseForm} />
+      )}
     </div>
   );
 }

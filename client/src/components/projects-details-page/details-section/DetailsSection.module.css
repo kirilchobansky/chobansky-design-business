@@ -7,7 +7,6 @@
   width: 550px;
   display: flex;
   flex-direction: column;
-  
 }
 
 .header {
@@ -72,4 +71,27 @@
   display: flex;
   justify-content: center; 
   margin-top: 1rem;
+}
+
+.classic {
+    background-color: #d3d3d38a;
+    padding: 0.7rem 2rem;
+    cursor: pointer;
+    transition: 0.5s;
+    text-decoration: none;
+    color: #000;
+    width: auto;
+    border: none;
+    font-size: 1rem;
+}
+
+.classic:hover {
+  background-color: #da7426;
+  box-shadow: 0 0 10px #da7426;
+  color: #fff;
+}
+
+.classic:active {
+    background-color: #a64c14;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
 }
