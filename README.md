@@ -1,108 +1,136 @@
-1. Initialize React App
+# Project Plan
 
-2. Create Home Page
+## 1. Initialize React App
 
-   - create header
-     - add html
-     - add css
-   - add home image
-     - add html
-     - add css
+- [x] Create a new React application using Create React App or a similar starter template.
 
-3. Projects List Page
+## 2. Home Page
 
-- add hardcore html and css
-- load projects from server
+- **Header**
+  - [x] Add HTML structure for the header.
+  - [x] Apply CSS styling.
+- **Home Image**
+  - [x] Add HTML for the home image.
+  - [x] Style with CSS.
 
-4. Projects Details Page
+## 3. Projects List Page
 
-- add hardcore html and css
-- load project from server
-  - add projects api
-- add comments section
-  - add html and css
-  - add comments api
+- [x] Add static HTML and CSS for the projects list.
+- [x] Load project data dynamically from the server.
 
-5. Create Server Side
+## 4. Projects Details Page
 
-- add projects in server collection
-- create api folder
-  - create requester file
+- **Project Details**
+  - [x] Add static HTML and CSS for project details.
+  - [x] Implement an API to fetch project details from the server.
+- **Comments Section**
+  - [x] Add HTML and CSS for the comments section.
+  - [x] Implement an API to handle comments.
 
-6. Authentication
+## 5. Server-Side Setup
 
-- create custom hooks
+- **Projects Collection**
+  - [x] Add projects to the server collection.
+- **API Folder**
+  - [x] Create a `requester` file for API requests.
 
-  - add useForm
-  - add useAuth
+## 6. Authentication
 
-- login
+- **Custom Hooks**
+  - [x] Create `useForm` for handling form inputs.
+  - [x] Create `useAuth` for managing authentication state.
+- **Login**
+  - [x] Create a `Login` component.
+  - [x] Implement login API integration.
+  - [x] Handle validation and error messages.
+- **Register**
+  - [x] Create a `Register` component.
+  - [x] Implement register API integration.
+  - [x] Handle validation and error messages.
+- **Logout**
+  - [x] Create a `Logout` component.
+  - [x] Implement logout API integration.
+  - [x] Add authorization handling in the requester.
+- **Route Guards**
+  - [x] Implement route guards to protect authenticated routes.
 
-  - create login component
-  - add login api
-  - handle validation and errors
+## 7. Refactoring
 
-- register
+- **Extract Auth State**
+  - [x] Refactor to extract authentication state from the `App` component.
+- **Persist Auth State**
+  - [x] Implement state persistence using local storage or similar methods.
+- **Migrate to MongoDB**
+  - [x] Migrate from the SoftUni practice server to a MongoDB server.
+  - [x] Create a `src` folder in the server directory.
+  - [x] Add a `server.ts` file.
+  - [x] Implement routes, controllers, models, and services.
 
-  - create register component
-  - add register api
-  - handle validation and errors
+## 8. Profile Page
 
-- logout
+- [x] Add HTML and CSS for the profile page.
+- [x] Load dynamic user information.
+- [x] Implement update and delete functionalities.
 
-  - create logout component
-  - add logout api
-  - add authorization in requester
+## 9. Filter Projects
 
-- add route guards
+- **Category Model**
+  - [x] Add a category field to the project model.
+- **Preseed Projects**
+  - [x] Preseed new projects with category data.
+- **Server Request**
+  - [x] Add filter request logic to the server.
+- **Filter Component**
+  - [x] Add HTML and CSS for the filter component.
+- **Load Filtered Projects**
+  - [x] Fetch and display filtered projects.
 
-7. Refacturing
+## 10. Like Project
 
-- extract auth state from app component
-- persist auth state
-- migrate from softuni practice server to mongoDB own server
-  - create src in server folder
-  - add server.ts
-  - add routes
-  - add controllers, models and services
+- **Server Methods**
+  - [x] Add methods for liking, disliking, and fetching liked projects.
+- **Controller Updates**
+  - [x] Update controller to handle new methods.
+- **User API**
+  - [x] Add like, dislike, and getLikedProjects endpoints in the user API.
+- **Custom Hook**
+  - [x] Create a custom hook for getting liked projects.
+- **Projects List**
+  - [x] Add like and dislike functionality to the projects list component.
 
-8. Profile page
+## 11. Wishlist
 
-- add html and css
-- load dynamic information
-- add update and delete functionalities
+- **Component Creation**
+  - [x] Create a `Wishlist` component.
+  - [x] Add HTML and CSS.
+- **Fetch Liked Projects**
+  - [x] Implement API calls to get liked projects.
+- **Display Projects**
+  - [x] Load and display projects in the wishlist component.
 
-9. Filter projects
+## 12. Orders
 
-- add category to project model
-- preseed new projects
-- add filter request to server
-- add filter in projects-api
-- add html and css for filter component
-- load filtered projects
+- **Order Model**
+  - [x] Define the order model on the server.
+- **Order Component**
+  - [x] Create an `Orders` component.
+  - [x] Add HTML and CSS for displaying orders.
+- **Order API**
+  - [x] Implement API endpoints for managing orders (create, read, update, delete).
+- **Fetch and Display Orders**
+  - [x] Fetch orders from the server and display them in the `Orders` component.
 
-10. Like Project
+## 13. Search
 
-- add methods in server services
-  - add like
-  - add dislike
-  - add getLikedProjects
-- add them in controller
-- add like, dislike and getLikedProjects in user-api
-- make getLikedProjects as custom hook
-- add functionality in projects-list component
+- **Search Component**
+  - [x] Create a `Search` component.
+- **App Routes**
+  - [x] Add a route for search functionality.
+- **Search API**
+  - [x] Implement an API request for search queries.
+- **Custom Hook**
+  - [x] Create a custom hook for search functionality.
+- **Display Search Results**
+  - [x] Load and display search results in the search component.
 
-11. Wishlist
-
-- add component
-- add html and css
-- get liked projects
-- load projects
-
-12. Search
-
-- create component search
-- add route in app
-- create request to server
-- create custom hook for search
-- load search data in component
+---
