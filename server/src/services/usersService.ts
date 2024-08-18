@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { Types } from "mongoose";
 import { User, IUser } from "../models/User";
 import { Project } from "../models/Project";
+import { Order } from "../models/Order";
 
 const SECRET = "ThatIsMyBestSecret";
 
@@ -87,10 +88,21 @@ const deleteUserById = (userId: Types.ObjectId) =>
 const getLikedProjectsByUser = (userId: Types.ObjectId) =>
   User.findById(userId).populate("favoriteProjects").exec();
 
-const search = (search: string) => {
+const search = async (search: string) => {
   const searchRegEx = new RegExp(search, "i");
-  const projects = Project.find({ name: { $regex: searchRegEx } });
-  return projects;
+  
+  const projects = await Project.find({ name: { $regex: searchRegEx } });
+  const orders = await Order.find({
+    $or: [
+      { enquiry: { $regex: searchRegEx } },
+      { email: { $regex: searchRegEx } }
+    ]
+  });
+  
+  return {
+    projects,
+    orders,
+  };
 };
 
 const changePassword = async (

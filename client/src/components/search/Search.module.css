@@ -20,12 +20,14 @@
   color: #333;
 }
 
-.projects-list, .orders-list {
+.projects-list,
+.orders-list {
   list-style-type: none;
   padding: 0;
 }
 
-.project-item, .order-item {
+.project-item,
+.order-item {
   padding: 15px;
   background-color: #fff;
   margin-bottom: 10px;
@@ -33,13 +35,15 @@
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-.project-item h4, .order-item h4 {
+.project-item h4,
+.order-item h4 {
   margin: 0;
   font-size: 18px;
   color: #555;
 }
 
-.project-item p, .order-item p {
+.project-item p,
+.order-item p {
   margin: 5px 0 0;
   color: #777;
 }

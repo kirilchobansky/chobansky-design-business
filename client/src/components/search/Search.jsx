@@ -1,36 +1,31 @@
 import React from "react";
 import styles from "./Search.module.css";
-import { useGetSearchProjects } from "../../hooks/useUser";
+import { useGetSearch } from "../../hooks/useUser";
 import { useParams } from "react-router-dom";
 import ProjectsList from "../projects-page/projects-list/ProjectsList";
+import OrdersList from "../orders/orders-list/OrdersList";
 
-export default function Search({ searchTerm, orders = [] }) {
+export default function Search() {
   const { search } = useParams();
-  const [projects] = useGetSearchProjects(search);
+  const { projects, orders } = useGetSearch(search);
+
+  const noResultsFound = !projects.length && !orders.length;
 
   return (
     <div className={styles["search-results"]}>
       <h2>Search Results for: "{search}"</h2>
-
-      <div className="results-section">
-        <ProjectsList projects={projects} />
-      </div>
-
-      {/* <div className="results-section">
-        <h3>Orders</h3>
-        {orders.length > 0 ? (
-          <ul className="orders-list">
-            {orders.map((order) => (
-              <li key={order.id} className="order-item">
-                <h4>Order #{order.id}</h4>
-                <p>{order.details}</p>
-              </li>
-            ))}
-          </ul>
+      <div className={styles["results-section"]}>
+        {noResultsFound ? (
+          <p className={styles["no-results"]}>
+            No results found for "{search}".
+          </p>
         ) : (
-          <p className="no-results">No orders found.</p>
+          <>
+            {projects.length > 0 && <ProjectsList projects={projects} />}
+            {orders.length > 0 && <OrdersList orders={orders} />}
+          </>
         )}
-      </div> */}
+      </div>
     </div>
   );
 }

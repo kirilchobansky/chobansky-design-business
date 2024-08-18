@@ -54,20 +54,23 @@ export const useGetLikedProjects = (userId, type) => {
     return [likedProjects, setLikedProjects];
 };
 
-export const useGetSearchProjects = (search) => {
+export const useGetSearch = (search) => {
     const [projects, setProjects] = useState([]);
+    const [orders, setOrders] = useState([]);
 
     useEffect(() => {
         (async () => {
             try {
-                setProjects(await userApi.search(search));
+                const response = await userApi.search(search);
+                setProjects(response.projects);
+                setOrders(response.orders);
             } catch (error) {
-                console.error("Failed to fetch searched projects:", error);
+                console.error("Failed to fetch searched data:", error);
             }
         })();
     }, [search]);
 
-    return [projects, setProjects];
+    return { projects, orders };
 };
 
 export const useChangePassword = () => {

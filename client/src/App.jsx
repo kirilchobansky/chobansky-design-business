@@ -19,14 +19,9 @@ import Wishlist from "./components/wishlist/Wishlist";
 import Search from "./components/search/Search";
 import Orders from "./components/orders/Orders";
 import AboutUs from "./components/about-us/AboutUs";
-import Footer from "./components/footer/Footer";
 import HowToChooseProject from "./components/how-to-choose-project/HowToChooseProject";
 
 const App = () => {
-  const location = useLocation();
-
-  const isHomePage = location.pathname === "/";
-
   return (
     <AuthContextProvider>
       <Header />
@@ -54,7 +49,6 @@ const App = () => {
           </Route>
         </Routes>
       </div>
-      {!isHomePage && <Footer />}
       <ToastContainer />
     </AuthContextProvider>
   );

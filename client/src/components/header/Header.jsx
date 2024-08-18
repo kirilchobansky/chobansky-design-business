@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import { useAuthContext } from "../../contexts/AuthContext";
 import ordersApi from "../../api/orders-api";
-import { useGetOrdersByUser } from "../../hooks/useOrders";
 
 export default function Header() {
   const { isAuthenticated, username, userId } = useAuthContext();
@@ -76,12 +75,13 @@ export default function Header() {
             </a>
           </li>
           <li>
-            <a href="#">
-              <i className="fa-solid fa-location-dot"></i>Bul. Gotse Delchev
+            <a
+              href="https://www.google.com/maps/place/Bul.+Gotse+Delchev,+Sofia,+Bulgaria/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fa-solid fa-location-dot"></i> Bul. Gotse Delchev
             </a>
-          </li>
-          <li>
-            <a href="/">EN</a>
           </li>
         </ul>
       </nav>
@@ -89,7 +89,7 @@ export default function Header() {
         <ul>
           <li>
             <Link to="/">
-              <img src="/public/images/chobansky-logo.jpg" alt="logo" />
+              <img src="/images/chobansky-logo.jpg" alt="logo" />
             </Link>
           </li>
           <li>

@@ -92,8 +92,11 @@ router.get("/favorite-projects/:userId", isAuth, async (req, res) => {
 
 router.get("/search/:searchName", async (req, res) => {
   const searchName = req.params.searchName;
-  const projects = await usersService.search(searchName);
-  res.send(projects);
+  const { projects, orders } = await usersService.search(searchName);
+  res.send({
+    projects,
+    orders
+  });
 });
 
 router.patch("/change-pass", isAuth, async (req, res) => {
