@@ -126,7 +126,7 @@ export default function Header() {
           <li>
             <Link to="/orders">
               <div className={styles["cart-container"]}>
-                <i className="fa-solid fa-cart-shopping"></i>
+                <i className="fa-solid fa-comment"></i>
                 {orderCount > 0 && (
                   <span className={styles["order-count"]}>{orderCount}</span>
                 )}

@@ -5,8 +5,8 @@ import projectsService from "../services/projectsService";
 const router = express.Router();
 
 router.get("/seed", async (req, res) => {
-  const commentsCount = await Project.countDocuments();
-  if (commentsCount > 0) {
+  const projectsCount = await Project.countDocuments();
+  if (projectsCount > 0) {
     res.send("Seed is already done!");
     return;
   }
@@ -16,8 +16,8 @@ router.get("/seed", async (req, res) => {
 });
 
 router.get("/delete", async (req, res) => {
-  const commentsCount = await Project.countDocuments();
-  if (commentsCount == 0) {
+  const projectsCount = await Project.countDocuments();
+  if (projectsCount == 0) {
     res.send("Nothing to delete!");
     return;
   }
