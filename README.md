@@ -1,4 +1,29 @@
-# Project Plan
+# 📐 Chobansky Design Portal
+
+A custom full-stack web application developed to organize, filter, and track architectural, residential, and environmental projects. This system is built using a decoupled **React (Single Page Application)** client architecture backed by a robust **Node.js/Express** REST API utilizing **MongoDB** for seamless state persistence.
+
+---
+
+## 🌟 Key Features
+
+- **Dynamic Project Cataloging:** Displays custom industrial, urban, public, and residential projects with structured metadata, including target areas, mock budgets, and interactive image carousels.
+- **Custom Global State Management:** Features a centralized `AuthContextProvider` to distribute authorization states across the React DOM tree without prop-drilling.
+- **Reusable Custom Hooks:** Optimized UI efficiency using custom-built hooks like `useAuth` for handling session operations and `useForm` for dynamic input tracking and form validation.
+- **Multi-Level Route Security:** Implemented custom React Route Guards (`IsAuth` and `IsGuest`) to strictly control navigation and protect user dashboards, order records, and wishlists.
+- **Persistent Wishlist & Engagement Engines:** Allows authenticated users to save projects to a custom wishlist, submit real-time comments, and toggle dynamic ratings (likes/dislikes) on project profiles.
+- **Automated Media Uploads:** Configured server-side media streaming with **Multer** to facilitate structured local file management and project photo uploads.
+- **User Order System:** Complete client workflow that models project-related service queries, managed securely on the backend database.
+
+---
+
+## 🛠️ Technology Stack
+
+- **Frontend:** React.js, React Router, Custom React Hooks & Contexts, CSS Modules, `react-toastify`
+- **Backend:** Node.js, Express.js, TypeScript, Nodemon, `ts-node`
+- **Database:** MongoDB (using Mongoose ODM to model Projects, Users, Comments, and Orders)
+- **Security & Media:** JSON Web Tokens (JWT), Bcrypt (password hashing), Multer (file uploading)
+
+---
 
 ## 1. Initialize React App
 
