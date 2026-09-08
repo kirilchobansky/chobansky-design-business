@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./Login.module.css";
@@ -58,7 +58,7 @@ export default function Login() {
           Login
         </button>
         <p className={styles.register}>
-          If you don't have an account click{" "}
+          If you don&apos;t have an account click{" "}
           <Link to="/register" className={styles.here}>
             here!
           </Link>

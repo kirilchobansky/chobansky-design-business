@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Search.module.css";
 import { useGetSearch } from "../../hooks/useUser";
 import { useParams } from "react-router-dom";
@@ -17,7 +16,7 @@ export default function Search() {
       <div className={styles["results-section"]}>
         {noResultsFound ? (
           <p className={styles["no-results"]}>
-            No results found for "{search}".
+            No results found for {search}.
           </p>
         ) : (
           <>

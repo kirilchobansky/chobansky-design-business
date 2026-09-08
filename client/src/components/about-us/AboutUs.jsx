@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./AboutUs.module.css"; // Ensure this path is correct
 
 const AboutUs = () => {

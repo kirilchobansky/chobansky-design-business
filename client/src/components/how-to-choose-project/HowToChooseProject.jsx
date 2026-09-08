@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./HowToChooseProject.module.css";
 import {
   FaSearch,
