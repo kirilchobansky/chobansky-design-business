@@ -1,161 +1,104 @@
+<div align="center">
+
 # 📐 Chobansky Design Portal
 
-A custom full-stack web application developed to organize, filter, and track architectural, residential, and environmental projects. This system is built using a decoupled **React (Single Page Application)** client architecture backed by a robust **Node.js/Express** REST API utilizing **MongoDB** for seamless state persistence.
+**A full-stack portfolio and ordering platform for architectural, residential and environmental design projects.**
+
+<br />
+
+[![License](https://img.shields.io/badge/License-ISC-000000?style=for-the-badge&logo=opensourceinitiative&logoColor=3DA639)](#-licence)
+[![React](https://img.shields.io/badge/React_18-000000?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-000000?style=for-the-badge&logo=vite&logoColor=646CFF)](https://vitejs.dev)
+[![React Router](https://img.shields.io/badge/React_Router_7-000000?style=for-the-badge&logo=reactrouter&logoColor=CA4245)](https://reactrouter.com)
+[![Node.js](https://img.shields.io/badge/Node.js-000000?style=for-the-badge&logo=nodedotjs&logoColor=5FA04E)](https://nodejs.org)
+[![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=3178C6)](https://www.typescriptlang.org)
+[![MongoDB](https://img.shields.io/badge/MongoDB-000000?style=for-the-badge&logo=mongodb&logoColor=47A248)](https://www.mongodb.com)
+
+</div>
 
 ---
 
-## 🌟 Key Features
+## 📖 About
 
-- **Dynamic Project Cataloging:** Displays custom industrial, urban, public, and residential projects with structured metadata, including target areas, mock budgets, and interactive image carousels.
-- **Custom Global State Management:** Features a centralized `AuthContextProvider` to distribute authorization states across the React DOM tree without prop-drilling.
-- **Reusable Custom Hooks:** Optimized UI efficiency using custom-built hooks like `useAuth` for handling session operations and `useForm` for dynamic input tracking and form validation.
-- **Multi-Level Route Security:** Implemented custom React Route Guards (`IsAuth` and `IsGuest`) to strictly control navigation and protect user dashboards, order records, and wishlists.
-- **Persistent Wishlist & Engagement Engines:** Allows authenticated users to save projects to a custom wishlist, submit real-time comments, and toggle dynamic ratings (likes/dislikes) on project profiles.
-- **Automated Media Uploads:** Configured server-side media streaming with **Multer** to facilitate structured local file management and project photo uploads.
-- **User Order System:** Complete client workflow that models project-related service queries, managed securely on the backend database.
+Chobansky Design Portal is a decoupled **React single-page application** backed by a **Node.js / Express** REST API with **MongoDB** for persistence. Visitors browse a catalogue of design projects; signed-in users can like projects into a wishlist, comment on them and place service orders.
 
----
+## ✨ Features
 
-## 🛠️ Technology Stack
+- 🏛️ **Project catalogue** — industrial, urban, public and residential projects with target area, budget and an image carousel.
+- 🔎 **Filter and search** — filter by category and search by name.
+- ❤️ **Wishlist and ratings** — like or dislike projects; liked projects collect in a personal wishlist.
+- 💬 **Comments** — signed-in users can discuss each project.
+- 🧾 **Orders** — create, view, update and delete service orders.
+- 👤 **Profile** — view, update and delete your account.
+- 🔐 **Authentication** — JWT sessions, bcrypt-hashed passwords, persisted login state.
+- 🛡️ **Route guards** — `IsAuth` and `IsGuest` guards protect dashboards and keep signed-in users off the login pages.
+- 🖼️ **Media uploads** — project photos handled server-side with Multer.
+- 🪝 **Custom hooks and context** — `useAuth`, `useForm` and a central `AuthContextProvider`, with no prop-drilling.
 
-- **Frontend:** React.js, React Router, Custom React Hooks & Contexts, CSS Modules, `react-toastify`
-- **Backend:** Node.js, Express.js, TypeScript, Nodemon, `ts-node`
-- **Database:** MongoDB (using Mongoose ODM to model Projects, Users, Comments, and Orders)
-- **Security & Media:** JSON Web Tokens (JWT), Bcrypt (password hashing), Multer (file uploading)
+## 🛠️ Tech Stack
 
----
+| Layer          | Technologies                                                         |
+| -------------- | -------------------------------------------------------------------- |
+| **Frontend**   | React 18 · React Router 7 · CSS Modules · react-toastify · react-icons |
+| **Backend**    | Node.js · Express · TypeScript · Nodemon · ts-node                   |
+| **Database**   | MongoDB · Mongoose (Projects, Users, Comments, Orders)               |
+| **Security**   | JSON Web Tokens · bcrypt · CORS                                      |
+| **Media**      | Multer                                                               |
+| **Build**      | Vite · ESLint                                                        |
 
-## 1. Initialize React App
+## 📁 Project Structure
 
-- [x] Create a new React application using Create React App or a similar starter template.
+```text
+├── client/                 # React SPA (Vite)
+│   └── src/
+│       ├── api/            # requester and API modules
+│       ├── components/     # pages and UI components
+│       ├── contexts/       # AuthContext
+│       ├── guards/         # IsAuth, IsGuest
+│       ├── hooks/          # useAuth, useForm, ...
+│       └── utils/
+└── server/                 # Express API
+    └── src/
+        ├── controllers/
+        ├── middlewares/
+        ├── models/         # Project, User, Comment, Order
+        ├── services/
+        ├── routes.ts
+        └── server.ts
+```
 
-## 2. Home Page
+## 🚀 Getting Started
 
-- **Header**
-  - [x] Add HTML structure for the header.
-  - [x] Apply CSS styling.
-- **Home Image**
-  - [x] Add HTML for the home image.
-  - [x] Style with CSS.
+**Requirements:** Node 20+ and a MongoDB instance on `localhost:27017`.
 
-## 3. Projects List Page
+```bash
+git clone https://github.com/kirilchobansky/chobansky-design-business.git
+cd chobansky-design-business
 
-- [x] Add static HTML and CSS for the projects list.
-- [x] Load project data dynamically from the server.
+# API (http://localhost:3000)
+cd server
+npm install
+npm start
 
-## 4. Projects Details Page
+# Client (http://localhost:5173), in a second terminal
+cd client
+npm install
+npm run dev
+```
 
-- **Project Details**
-  - [x] Add static HTML and CSS for project details.
-  - [x] Implement an API to fetch project details from the server.
-- **Comments Section**
-  - [x] Add HTML and CSS for the comments section.
-  - [x] Implement an API to handle comments.
+The API connects to `mongodb://localhost:27017/chobansky-design` and allows CORS from `http://localhost:5173`.
 
-## 5. Server-Side Setup
+### Scripts
 
-- **Projects Collection**
-  - [x] Add projects to the server collection.
-- **API Folder**
-  - [x] Create a `requester` file for API requests.
+| Where    | Command         | What it does                      |
+| -------- | --------------- | --------------------------------- |
+| `client` | `npm run dev`   | Start the Vite dev server         |
+| `client` | `npm run build` | Production build into `dist/`     |
+| `client` | `npm run lint`  | Run ESLint                        |
+| `server` | `npm start`     | Run the API with Nodemon          |
+| `server` | `npm run build` | Compile TypeScript                |
 
-## 6. Authentication
+## 📄 Licence
 
-- **Custom Hooks**
-  - [x] Create `useForm` for handling form inputs.
-  - [x] Create `useAuth` for managing authentication state.
-- **Login**
-  - [x] Create a `Login` component.
-  - [x] Implement login API integration.
-  - [x] Handle validation and error messages.
-- **Register**
-  - [x] Create a `Register` component.
-  - [x] Implement register API integration.
-  - [x] Handle validation and error messages.
-- **Logout**
-  - [x] Create a `Logout` component.
-  - [x] Implement logout API integration.
-  - [x] Add authorization handling in the requester.
-- **Route Guards**
-  - [x] Implement route guards to protect authenticated routes.
-
-## 7. Refactoring
-
-- **Extract Auth State**
-  - [x] Refactor to extract authentication state from the `App` component.
-- **Persist Auth State**
-  - [x] Implement state persistence using local storage or similar methods.
-- **Migrate to MongoDB**
-  - [x] Migrate from the SoftUni practice server to a MongoDB server.
-  - [x] Create a `src` folder in the server directory.
-  - [x] Add a `server.ts` file.
-  - [x] Implement routes, controllers, models, and services.
-
-## 8. Profile Page
-
-- [x] Add HTML and CSS for the profile page.
-- [x] Load dynamic user information.
-- [x] Implement update and delete functionalities.
-
-## 9. Filter Projects
-
-- **Category Model**
-  - [x] Add a category field to the project model.
-- **Preseed Projects**
-  - [x] Preseed new projects with category data.
-- **Server Request**
-  - [x] Add filter request logic to the server.
-- **Filter Component**
-  - [x] Add HTML and CSS for the filter component.
-- **Load Filtered Projects**
-  - [x] Fetch and display filtered projects.
-
-## 10. Like Project
-
-- **Server Methods**
-  - [x] Add methods for liking, disliking, and fetching liked projects.
-- **Controller Updates**
-  - [x] Update controller to handle new methods.
-- **User API**
-  - [x] Add like, dislike, and getLikedProjects endpoints in the user API.
-- **Custom Hook**
-  - [x] Create a custom hook for getting liked projects.
-- **Projects List**
-  - [x] Add like and dislike functionality to the projects list component.
-
-## 11. Wishlist
-
-- **Component Creation**
-  - [x] Create a `Wishlist` component.
-  - [x] Add HTML and CSS.
-- **Fetch Liked Projects**
-  - [x] Implement API calls to get liked projects.
-- **Display Projects**
-  - [x] Load and display projects in the wishlist component.
-
-## 12. Orders
-
-- **Order Model**
-  - [x] Define the order model on the server.
-- **Order Component**
-  - [x] Create an `Orders` component.
-  - [x] Add HTML and CSS for displaying orders.
-- **Order API**
-  - [x] Implement API endpoints for managing orders (create, read, update, delete).
-- **Fetch and Display Orders**
-  - [x] Fetch orders from the server and display them in the `Orders` component.
-
-## 13. Search
-
-- **Search Component**
-  - [x] Create a `Search` component.
-- **App Routes**
-  - [x] Add a route for search functionality.
-- **Search API**
-  - [x] Implement an API request for search queries.
-- **Custom Hook**
-  - [x] Create a custom hook for search functionality.
-- **Display Search Results**
-  - [x] Load and display search results in the search component.
-
----
+Released under the **ISC** licence.
