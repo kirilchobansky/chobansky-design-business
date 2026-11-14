@@ -1,9 +1,10 @@
 import { Project } from "../models/Project";
+import { escapeRegex } from "../utils/escapeRegex";
 
 const getAll = () => Project.find();
 
 const search = (search: string) => {
-  const searchRegEx = new RegExp(search, "i");
+  const searchRegEx = new RegExp(escapeRegex(search), "i");
   const projects = Project.find({ name: { $regex: searchRegEx } });
   return projects;
 };

@@ -1,23 +1,5 @@
-import express from "express";
-import cors from "cors";
 import mongoose from "mongoose";
-import router from "./routes";
-
-const app = express();
-
-app.use(express.json());
-app.use(
-  cors({
-    credentials: true,
-    origin: ["http://localhost:5173"],
-  })
-);
-
-app.get("/", (req, res) => {
-  res.send("Server is working!");
-});
-
-app.use(router);
+import app from "./app";
 
 const port = 3000;
 

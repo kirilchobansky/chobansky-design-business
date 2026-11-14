@@ -1,6 +1,5 @@
 import { verify } from "jsonwebtoken";
-
-const SECRET = "ThatIsMyBestSecret"; 
+import { JWT_SECRET } from "../config";
 
 export default (req: any, res: any, next: any) => {
   const authHeader = req.headers.authorization;
@@ -16,11 +15,9 @@ export default (req: any, res: any, next: any) => {
   }
 
   try {
-    const decodedUser = verify(token, SECRET);
-    req.user = decodedUser;
+    req.user = verify(token, JWT_SECRET);
     next();
   } catch (error) {
-    console.error("Error verifying token:", error);
     return res.status(401).json({ message: "Invalid or expired token" });
   }
 };

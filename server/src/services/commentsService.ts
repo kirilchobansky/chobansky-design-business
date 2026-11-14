@@ -5,12 +5,12 @@ import { User } from "../models/User";
 
 const getAllCommentsByProject = (projectId: Types.ObjectId) =>
   Comment.find({ project: projectId })
-    .populate(["owner"])
+    .populate("owner", "username")
     .sort({ createdAt: -1 });
 
 const getLatestThreeCommentsByProject = (projectId: Types.ObjectId) => {
   return Comment.find({ project: projectId })
-    .populate(["owner"])
+    .populate("owner", "username")
     .sort({ createdAt: -1 })
     .limit(3);
 };
@@ -24,6 +24,8 @@ const updateProjectPost = (
   projectId: Types.ObjectId,
   commentId: Types.ObjectId
 ) => Project.findByIdAndUpdate(projectId, { $push: { comments: commentId } });
+
+const getCommentById = (commentId: Types.ObjectId) => Comment.findById(commentId);
 
 const deleteComment = (commentId: Types.ObjectId) =>
   Comment.findByIdAndDelete(commentId);
@@ -40,6 +42,7 @@ const updateProjectDelete = (
 ) => Project.findByIdAndUpdate(projectId, { $pull: { comments: commentId } });
 
 export default {
+  getCommentById,
   getAllCommentsByProject,
   getLatestThreeCommentsByProject,
   postComment,

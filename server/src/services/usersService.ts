@@ -4,10 +4,14 @@ import { Types } from "mongoose";
 import { User, IUser } from "../models/User";
 import { Project } from "../models/Project";
 import { Order } from "../models/Order";
-
-const SECRET = "ThatIsMyBestSecret";
+import { JWT_SECRET } from "../config";
+import { escapeRegex } from "../utils/escapeRegex";
 
 const login = async (email: string, password: string) => {
+  if (typeof email !== "string" || typeof password !== "string") {
+    throw new Error("Cannot find email or password!");
+  }
+
   const user = await User.findOne({ email });
 
   if (!user) {
@@ -41,7 +45,7 @@ function generateToken(user: IUser) {
     isAdmin: user.isAdmin,
   };
 
-  const accessToken = jwt.sign(payload, SECRET, { expiresIn: "3d" });
+  const accessToken = jwt.sign(payload, JWT_SECRET, { expiresIn: "3d" });
 
   return {
     id: user._id,
@@ -55,7 +59,7 @@ function generateToken(user: IUser) {
 }
 
 const likeProject = (projectId: Types.ObjectId, userId: Types.ObjectId) =>
-  User.findByIdAndUpdate(userId, { $push: { favoriteProjects: projectId } });
+  User.findByIdAndUpdate(userId, { $addToSet: { favoriteProjects: projectId } });
 
 const dislikeProject = (projectId: Types.ObjectId, userId: Types.ObjectId) =>
   User.findByIdAndUpdate(userId, { $pull: { favoriteProjects: projectId } });
@@ -88,17 +92,21 @@ const deleteUserById = (userId: Types.ObjectId) =>
 const getLikedProjectsByUser = (userId: Types.ObjectId) =>
   User.findById(userId).populate("favoriteProjects").exec();
 
-const search = async (search: string) => {
-  const searchRegEx = new RegExp(search, "i");
-  
+// Orders are private: only the signed-in user's own orders are searched.
+const search = async (search: string, userId?: string) => {
+  const searchRegEx = new RegExp(escapeRegex(search), "i");
+
   const projects = await Project.find({ name: { $regex: searchRegEx } });
-  const orders = await Order.find({
-    $or: [
-      { enquiry: { $regex: searchRegEx } },
-      { email: { $regex: searchRegEx } }
-    ]
-  });
-  
+  const orders = userId
+    ? await Order.find({
+        owner: userId,
+        $or: [
+          { enquiry: { $regex: searchRegEx } },
+          { email: { $regex: searchRegEx } },
+        ],
+      })
+    : [];
+
   return {
     projects,
     orders,
@@ -110,6 +118,10 @@ const changePassword = async (
   oldPassword: string,
   newPassword: string
 ) => {
+  if (typeof oldPassword !== "string") {
+    throw new Error("Wrong password!");
+  }
+
   const user = await User.findOne({ _id: userId });
 
   if (!user) {

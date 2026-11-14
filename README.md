@@ -33,7 +33,6 @@ Chobansky Design Portal is a decoupled **React single-page application** backed 
 - 👤 **Profile** — view, update and delete your account.
 - 🔐 **Authentication** — JWT sessions, bcrypt-hashed passwords, persisted login state.
 - 🛡️ **Route guards** — `IsAuth` and `IsGuest` guards protect dashboards and keep signed-in users off the login pages.
-- 🖼️ **Media uploads** — project photos handled server-side with Multer.
 - 🪝 **Custom hooks and context** — `useAuth`, `useForm` and a central `AuthContextProvider`, with no prop-drilling.
 
 ## 🛠️ Tech Stack
@@ -44,7 +43,6 @@ Chobansky Design Portal is a decoupled **React single-page application** backed 
 | **Backend**    | Node.js · Express · TypeScript · Nodemon · ts-node                   |
 | **Database**   | MongoDB · Mongoose (Projects, Users, Comments, Orders)               |
 | **Security**   | JSON Web Tokens · bcrypt · CORS                                      |
-| **Media**      | Multer                                                               |
 | **Build**      | Vite · ESLint                                                        |
 
 ## 📁 Project Structure
@@ -88,6 +86,17 @@ npm run dev
 ```
 
 The API connects to `mongodb://localhost:27017/chobansky-design` and allows CORS from `http://localhost:5173`.
+
+### Configuration
+
+The API signs login tokens with the `JWT_SECRET` environment variable (see `server/.env.example`).
+
+```bash
+JWT_SECRET="$(node -e "console.log(require('crypto').randomBytes(32).toString('hex'))")" npm start
+```
+
+- **Production:** `JWT_SECRET` is required (with `NODE_ENV=production` the server refuses to start without it).
+- **Development:** if it is not set, a temporary random secret is used and everyone is logged out on each restart.
 
 ### Scripts
 
